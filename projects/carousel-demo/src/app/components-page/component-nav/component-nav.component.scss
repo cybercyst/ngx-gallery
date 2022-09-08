@@ -1,0 +1,31 @@
+:host {
+  ::ng-deep {
+    .mat-list-item-content {
+      padding-left: 25px;
+    }
+  }
+}
+
+.docs-component-viewer-nav {
+  position: sticky;
+  top: 0;
+}
+.docs-component-viewer-nav-content {
+  width: 240px;
+  height: calc(100vh - 56px);
+  overflow: auto;
+  border-right: 1px solid rgba(0,0,0,.12);
+}
+
+.mat-list-base {
+  padding-top: 0;
+}
+
+.mat-list-item {
+  color: #000000a6;
+}
+
+.mat-list-item.active {
+  background: hsla(var(--primary-color-hue, 0), 89.7%, 54.1%, 0.15);
+  color: hsl(var(--primary-color-hue), 89.7%, 54.1%);
+}

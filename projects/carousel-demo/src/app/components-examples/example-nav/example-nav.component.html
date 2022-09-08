@@ -1,0 +1,11 @@
+<carousel style="height: 300px"
+          [perPage]="1">
+  <carousel-nav></carousel-nav>
+  <ng-container *ngFor="let item of items; index as i">
+    <ng-template carouselItem>
+      <div class="test-item" [style.background]="item.color">
+        {{ i + 1 }}
+      </div>
+    </ng-template>
+  </ng-container>
+</carousel>

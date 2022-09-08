@@ -1,0 +1,25 @@
+:host {
+  --carousel-player-space: 0;
+  position: absolute;
+  bottom: var(--carousel-player-space);
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+span {
+  padding: 5px;
+  border-radius: 3px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 26px;
+  z-index: 100;
+  width: fit-content;
+}

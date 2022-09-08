@@ -1,0 +1,33 @@
+<ng-container *ngIf="state$ | async; let state">
+
+  <ng-container *ngIf="!state.copied; else copiedMessage">
+
+      <pre *ngIf="disabled; else enabled">
+        <code #codeEL class="hljs" [innerHTML]="code"></code>
+      </pre>
+
+    <ng-template #enabled>
+        <pre>
+          <code [highlight]="code"></code>
+        </pre>
+    </ng-template>
+
+  </ng-container>
+
+  <ng-template #copiedMessage>
+    <div class="hljs copy-message">
+      <mat-icon>done</mat-icon>
+      <span>Copied!</span>
+    </div>
+  </ng-template>
+
+</ng-container>
+
+<button mat-icon-button
+        color="accent"
+        matTooltip="Copy code"
+        matTooltipClass="copy-tooltip"
+        matTooltipPosition="before"
+        (click)="copy()">
+  <mat-icon class="md-24" aria-label="Copy code">content_paste</mat-icon>
+</button>

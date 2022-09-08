@@ -1,0 +1,15 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="over">
+    <component-nav class="sidenav"></component-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="docs-component-sidenav-content">
+      <app-header>{{ title$ | async }}</app-header>
+      <main>
+        <component-nav></component-nav>
+        <router-outlet></router-outlet>
+      </main>
+      <app-footer></app-footer>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

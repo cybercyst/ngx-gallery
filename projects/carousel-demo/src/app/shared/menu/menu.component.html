@@ -1,0 +1,11 @@
+<div class="menu" [class.menu-toolbar]="toolbar">
+  <a mat-button routerLink="." routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+true}">Home</a>
+  <a mat-button color="danger" routerLink="guides" routerLinkActive="active">Guides</a>
+  <a mat-button color="danger" routerLink="components" routerLinkActive="active">Components</a>
+  <span fxFlex></span>
+  <a mat-button class="btn-icon" href="https://github.com/MurhafSousli/ng-gallery">
+    <fa-icon style="font-size: 27px; margin-right: 8px" [icon]="['fab', 'github']"></fa-icon>
+    <span>GitHub</span>
+  </a>
+</div>

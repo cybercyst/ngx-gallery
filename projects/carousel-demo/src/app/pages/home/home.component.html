@@ -1,0 +1,76 @@
+<div class="page-title">
+  <h1>Carousel.Pro</h1>
+  <sub>Professional yet high performant Angular carousel, gallery and lightbox</sub>
+  <a mat-raised-button class="docs-button" routerLink="/getting-started">Get Started</a>
+</div>
+
+<div class="page-content">
+
+  <div class="demo-1">
+    <h4>Click for demo:</h4>
+
+    <!--    <ng-template lightbox #lightbox3="lightbox">-->
+    <!--      <carousel></carousel>-->
+    <!--    </ng-template>-->
+
+    <!--    <button (click)="lightbox3.open()">test</button>-->
+
+    <div class="carousel-wrapper">
+      <button mat-raised-button
+              class="grid-item"
+              *ngFor="let item of camel$ | async; index as i"
+              (click)="lightbox1.open(i)">
+        <img [src]="item.data.thumb">
+      </button>
+    </div>
+
+    <a class="button" href="">More Examples</a>
+  </div>
+</div>
+
+<div class="email-subscription">
+  <h2>Sign up for updates</h2>
+  <p>The carousel.pro library is being constantly developed.</p>
+  <p>Sign up with purchase e-mail to download updates as they appear:.</p>
+  <div class="email-input">
+    <mat-form-field appearance="fill">
+      <mat-label>your e-mail address</mat-label>
+      <input type="email" matInput [formControl]="form" placeholder="Ex. pat@example.com">
+      <mat-error *ngIf="form.hasError('email') && !form.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="form.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button
+            color="primary"
+            (click)="addEmail(form.value)">Subscribe
+    </button>
+  </div>
+</div>
+
+<footer></footer>
+
+<ng-template lightbox #lightbox1="lightbox" [fullscreen]="false">
+  <carousel #carousel="carousel" [selectedItem]="lightbox1.selected" [gestures]="false">
+    <ng-container *ngFor="let item of camel$ | async; index as i">
+      <ng-template carouselItem #carouselItem="carouselItem">
+        <gallery-image [src]="item.data.src"></gallery-image>
+        <gallery-item-text>
+          <h1 [@fade]="carousel.carouselRef.snapshot.activePage === i ? 'in' : 'out'"
+              style="font-weight: 300">{{ item.data.title }}</h1>
+          <h4 [@fade]="carousel.carouselRef.snapshot.activePage === i ? 'in' : 'out'"
+              style="font-weight: 300">{{ item.data.text }}</h4>
+        </gallery-item-text>
+      </ng-template>
+      <ng-template carouselItemThumb>
+        <button mat-button style="padding: 0; width: 100%; height: 100%">
+          <gallery-image [src]="item.data.thumb" style="position: absolute; top: 0;bottom: 0"></gallery-image>
+        </button>
+      </ng-template>
+    </ng-container>
+    <carousel-nav></carousel-nav>
+    <carousel-thumbs [itemHeight]="100" [perPage]="8" position="top"></carousel-thumbs>
+  </carousel>
+</ng-template>

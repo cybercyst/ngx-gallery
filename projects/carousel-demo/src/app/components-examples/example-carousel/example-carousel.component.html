@@ -1,0 +1,74 @@
+<mat-form-field appearance="fill">
+  <mat-label>Per Page</mat-label>
+  <input matInput type="number" [(ngModel)]="perPage">
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Cache Size (NOT WORKING)</mat-label>
+  <input matInput type="number" [(ngModel)]="cacheSize">
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Pan Sensitivity (NOT WORKING)</mat-label>
+  <input matInput type="number" [(ngModel)]="panSensitivity">
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Selected Behavior</mat-label>
+  <mat-select [(value)]="selectedBehavior">
+    <mat-option [value]="'auto'">auto</mat-option>
+    <mat-option [value]="'smooth'">smooth</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Mode</mat-label>
+  <mat-select [(value)]="mode">
+    <mat-option value="free">free</mat-option>
+    <mat-option value="strict">strict</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Mode</mat-label>
+  <mat-select [(value)]="orientation">
+    <mat-option value="vertical">Vertical</mat-option>
+    <mat-option value="horizontal">Horizontal</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Selected Page</mat-label>
+  <input matInput type="number" [(ngModel)]="selectedPage">
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Selected Item</mat-label>
+  <input matInput type="number" [(ngModel)]="selectedItem">
+</mat-form-field>
+
+<mat-slide-toggle [(ngModel)]="loop">Loop</mat-slide-toggle>
+
+<mat-slide-toggle [(ngModel)]="gestures">Gestures</mat-slide-toggle>
+
+<div class="gallery-container">
+  <carousel [mode]="mode"
+            [loop]="loop"
+            [panSensitivity]="panSensitivity"
+            [cacheSize]="cacheSize"
+            [orientation]="orientation"
+            [selectedBehaviour]="selectedBehavior"
+            [perPage]="perPage"
+            [selectedPage]="selectedPage"
+            [selectedItem]="selectedItem"
+            [gestures]="gestures">
+    <ng-container *ngFor="let item of items; index as i">
+      <ng-template carouselItem>
+        <div class="test-item"
+             [style.background]="'linear-gradient(to right top, ' + item.color1 + ',' + item.color2 + ')'">
+          <span>{{ i + 1 }}</span>
+        </div>
+      </ng-template>
+    </ng-container>
+  </carousel>
+</div>

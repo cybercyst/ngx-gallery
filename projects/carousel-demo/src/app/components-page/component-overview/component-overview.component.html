@@ -1,0 +1,27 @@
+<ng-container *ngIf="doc$ | async as docs; else noData">
+  <ng-container *ngFor="let segment of docs">
+    <div *ngIf="segment.type === DocType.Component; else doc"
+         class="docs-component">
+      <ng-container *ngIf="segment.content; else componentNotFound">
+        <example-viewer [data]="segment.content"></example-viewer>
+      </ng-container>
+
+      <ng-template #componentNotFound>
+        <app-error>
+          <p><b>ERROR:</b> Component "{{ segment.name }}" was not found!</p>
+        </app-error>
+      </ng-template>
+    </div>
+
+    <ng-template #doc>
+      <div class="docs-markdown" [innerHTML]="segment.content | html"></div>
+    </ng-template>
+  </ng-container>
+</ng-container>
+
+<ng-template #noData>
+  <app-error>
+    <p><b>ERROR:</b> Data could not be fetched!</p>
+  </app-error>
+</ng-template>
+

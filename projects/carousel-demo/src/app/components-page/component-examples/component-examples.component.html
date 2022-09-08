@@ -1,0 +1,11 @@
+<div *ngFor="let example of examples$ | async" class="example-component">
+  <ng-container *ngIf="example.content; else componentNotFound">
+    <example-viewer [data]="example.content"></example-viewer>
+  </ng-container>
+
+  <ng-template #componentNotFound>
+    <app-error>
+      <p><b>ERROR:</b> Component "{{ example.name }}" was not found!</p>
+    </app-error>
+  </ng-template>
+</div>

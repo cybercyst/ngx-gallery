@@ -1,0 +1,16 @@
+<app-header>{{ title }}</app-header>
+
+<div class="page-content">
+  <a *ngFor="let route of config.routes" [routerLink]="['..', route.path]">
+    <mat-card>
+      <mat-card-title>
+        {{ route.title }}
+      </mat-card-title>
+      <div class="docs-guide-card-divider"></div>
+<!--      <mat-card-content>-->
+<!--        {{ route?.description }}-->
+<!--      </mat-card-content>-->
+    </mat-card>
+  </a>
+  <footer></footer>
+</div>

@@ -1,0 +1,74 @@
+<mat-form-field appearance="fill">
+  <mat-label>Click Behavior</mat-label>
+  <mat-select [(value)]="clickBehavior">
+    <mat-option [value]="'auto'">auto</mat-option>
+    <mat-option [value]="'smooth'">smooth</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Selected Behavior</mat-label>
+  <mat-select [(value)]="selectedBehavior">
+    <mat-option [value]="'auto'">auto</mat-option>
+    <mat-option [value]="'smooth'">smooth</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Max shown items</mat-label>
+  <input matInput type="number" [(ngModel)]="maxShownItems">
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Selected Page</mat-label>
+  <input matInput type="number" [(ngModel)]="selectedItem">
+</mat-form-field>
+
+<mat-slide-toggle [(ngModel)]="centralised">Centralised</mat-slide-toggle>
+
+<div class="gallery-container">
+
+  <h2>Horizontal</h2>
+
+  <horizontal-centralised-carousel [style.background]="'#f0f0f0'"
+                                   [selectedItem]="selectedItem"
+                                   [itemWidth]="100"
+                                   [itemHeight]="60"
+                                   [maxShownItems]="maxShownItems"
+                                   [clickBehavior]="clickBehavior"
+                                   [selectedBehaviour]="selectedBehavior"
+                                   [centralised]="centralised">
+    <ng-container *ngFor="let item of items; index as i">
+      <ng-template carouselItem>
+        <div class="test-item test-item-{{i + 1}}" [style.background]="item.color">
+          {{ i + 1 }}
+        </div>
+      </ng-template>
+    </ng-container>
+  </horizontal-centralised-carousel>
+
+  <h2>Vertical</h2>
+
+  <div style="display: flex; justify-content: space-around; margin-top: 2em">
+
+    <vertical-centralised-carousel style="height: 300px"
+                                   [style.background]="'#f0f0f0'"
+                                   [selectedItem]="selectedItem"
+                                   [itemWidth]="60"
+                                   [itemHeight]="60"
+                                   [selectedPage]="selectedItem"
+                                   [maxShownItems]="maxShownItems"
+                                   [clickBehavior]="clickBehavior"
+                                   [selectedBehaviour]="selectedBehavior"
+                                   [centralised]="centralised">
+      <ng-container *ngFor="let item of items; index as i">
+        <ng-template carouselItem>
+          <div class="test-item" [style.background]="item.color">
+            {{ i + 1 }}
+          </div>
+        </ng-template>
+      </ng-container>
+    </vertical-centralised-carousel>
+
+  </div>
+</div>

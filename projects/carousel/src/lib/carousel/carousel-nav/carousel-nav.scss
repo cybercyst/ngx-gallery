@@ -1,0 +1,110 @@
+:host {
+  --carousel-nav-color: var(--carousel-color, #fff);
+}
+
+.carousel-nav {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+svg {
+  width: 30px;
+  height: 30px;
+  filter: drop-shadow(0px 0px 1px black);
+  transform: translate3d(0, 0, 0); // fix box shadow when parent is reversed
+}
+
+::ng-deep {
+  // Navigation buttons styles
+  .g-nav {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .g-next {
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    carousel-nav-button {
+      right: 0;
+    }
+  }
+
+  .g-prev {
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    carousel-nav-button {
+      left: 0;
+    }
+  }
+
+  .carousel-nav-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+
+  .carousel-nav-button {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+  }
+
+  // This applies only on default template button
+  .carousel-nav-prev {
+    .carousel-nav-button {
+      transform: scale(-1, -1); //invert icon horizontally
+    }
+  }
+
+  // Attribute carouselNavButton: This removes default button styles
+  carousel-nav-button {
+    z-index: 999;
+
+    button {
+      color: var(--carousel-nav-color);
+
+      transition: opacity linear 0.2s;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      outline: 0;
+      cursor: pointer;
+      // opacity: 0.6;
+
+      &:hover:enabled {
+        opacity: 1;
+      }
+
+      &:disabled {
+        cursor: default;
+        color: rgba(0, 0, 0, 0.2);
+
+        .carousel-nav-icon {
+
+          path {
+            fill: rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+
+      .carousel-nav-icon {
+        path {
+          fill: var(--carousel-nav-color);
+        }
+      }
+    }
+  }
+}

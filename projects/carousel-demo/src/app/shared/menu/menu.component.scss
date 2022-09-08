@@ -1,0 +1,48 @@
+@import "../../../assets/mixin";
+@import "../../../assets/variables";
+
+:host {
+  flex: 1;
+  padding-left: 15px;
+  margin: 0;
+}
+
+a {
+  width: 220px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-toolbar {
+  flex-direction: row;
+  a {
+    width: unset;
+  }
+  @include mobile() {
+    display: none;
+  }
+}
+
+.mat-button {
+  font-family: $font-family;
+  &:hover {
+    background: rgba(0,0,0,.4);
+  }
+}
+
+.btn-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  i {
+    font-size: 1.7em;
+    margin-right: 0.4em;
+  }
+}
+
+.active {
+  background: rgba(0,0,0,.2);
+}

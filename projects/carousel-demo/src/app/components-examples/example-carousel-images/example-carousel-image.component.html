@@ -1,0 +1,49 @@
+<carousel style="height: 500px; background: black"
+          [perPage]="1">
+  <ng-container *ngFor="let item of fruits$ | async">
+    <ng-template carouselItem>
+      <gallery-image [src]="item.data.src"></gallery-image>
+    </ng-template>
+  </ng-container>
+</carousel>
+
+
+  <!--<div style="position: fixed; left: 50px; top: 150px; background: rgba(0,0,0,0.5); color: white">-->
+  <!--  <pre>-->
+  <!--  {{ debugState$ | async | json }}-->
+  <!--  </pre>-->
+  <!--</div>-->
+
+  <!--  <carousel style="height: 500px">-->
+  <!--    <ng-container *ngFor="let item of fruits$ | async">-->
+  <!--      <ng-template carouselItem>-->
+  <!--        <gallery-image [src]="item.data.src"></gallery-image>-->
+  <!--      </ng-template>-->
+  <!--      <ng-template carouselItemThumb>-->
+  <!--        <gallery-image [src]="item.data.thumb"></gallery-image>-->
+  <!--      </ng-template>-->
+  <!--    </ng-container>-->
+
+  <!--    <carousel-nav [space]="20">-->
+  <!--          <ng-template carouselNavNext>-->
+  <!--            <button carouselNavNextButton mat-mini-fab color="primary">-->
+  <!--              <mat-icon aria-label="Next slide">keyboard_arrow_right</mat-icon>-->
+  <!--            </button>-->
+  <!--          </ng-template>-->
+
+  <!--          <ng-template carouselNavPrev>-->
+  <!--            <button carouselNavPrevButton mat-mini-fab color="primary">-->
+  <!--              <mat-icon aria-label="Previous slide">keyboard_arrow_left</mat-icon>-->
+  <!--            </button>-->
+  <!--          </ng-template>-->
+  <!--    </carousel-nav>-->
+
+  <!--    <carousel-thumbs [perPage]="4"></carousel-thumbs>-->
+  <!--  </carousel>-->
+
+
+<!--<mat-nav-list>-->
+<!--  <a mat-list-item *ngFor="let link of links"> {{ link }} </a>-->
+<!--</mat-nav-list>-->
+
+

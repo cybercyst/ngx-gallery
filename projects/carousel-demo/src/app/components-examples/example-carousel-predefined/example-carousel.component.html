@@ -1,0 +1,10 @@
+<carousel [perPage]="1">
+  <ng-container *ngFor="let item of items; index as i">
+    <ng-template carouselItem>
+        <div class="test-item"
+             [style.background]="'linear-gradient(to right top, ' + item.color1 + ',' + item.color2 + ')'">
+          {{ i + 1 }}
+        </div>
+    </ng-template>
+  </ng-container>
+</carousel>

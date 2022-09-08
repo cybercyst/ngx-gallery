@@ -1,0 +1,40 @@
+<mat-form-field appearance="fill">
+  <mat-label>Position</mat-label>
+  <mat-select [(value)]="position">
+    <mat-option value="left">left</mat-option>
+    <mat-option value="right">right</mat-option>
+    <mat-option value="top">top</mat-option>
+    <mat-option value="bottom">bottom</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Click Behavior</mat-label>
+  <mat-select [(value)]="clickBehavior">
+    <mat-option [value]="'auto'">auto</mat-option>
+    <mat-option [value]="'smooth'">smooth</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-slide-toggle [(ngModel)]="centralised">Centralised</mat-slide-toggle>
+
+<mat-slide-toggle [(ngModel)]="compact">Compact</mat-slide-toggle>
+
+<div class="gallery-container">
+  <carousel style="height: 300px">
+    <carousel-dots [itemWidth]="size"
+                   [itemHeight]="size"
+                   [clickBehavior]="clickBehavior"
+                   [position]="position"
+                   [centralised]="centralised"
+                   [compact]="true"></carousel-dots>
+    <ng-container *ngFor="let item of items; index as i">
+      <ng-template carouselItem>
+        <div class="test-item" [style.background]="item.color">
+          {{ i + 1 }}
+        </div>
+      </ng-template>
+    </ng-container>
+    <carousel-nav></carousel-nav>
+  </carousel>
+</div>

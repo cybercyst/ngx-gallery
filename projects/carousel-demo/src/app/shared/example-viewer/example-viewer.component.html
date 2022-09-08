@@ -1,0 +1,27 @@
+<div class="docs-example-viewer-wrapper">
+  <div class="docs-example-viewer-title">
+    <div class="docs-example-viewer-title-spacer">
+      Example name
+    </div>
+    <button mat-icon-button (click)="viewCode = !viewCode">
+      <mat-icon>code</mat-icon>
+    </button>
+  </div>
+
+  <div *ngIf="viewCode" class="docs-example-viewer-source">
+    <mat-tab-group animationDuration="0ms">
+      <mat-tab *ngFor="let file of data.files" [label]="file.language | uppercase">
+        <div class="button-bar">
+          <button mat-icon-button class="docs-example-source-copy docs-example-button">
+            <mat-icon>content_copy</mat-icon>
+          </button>
+        </div>
+        <code-snippet [file]="file"></code-snippet>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+  <div class="docs-example-viewer-body">
+    <ng-template [cdkPortalOutlet]="data.component"></ng-template>
+  </div>
+</div>

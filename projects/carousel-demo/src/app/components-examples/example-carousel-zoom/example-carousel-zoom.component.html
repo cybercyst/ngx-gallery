@@ -1,0 +1,45 @@
+<mat-slide-toggle [(ngModel)]="zoomWithWheel">Zoom With Wheel</mat-slide-toggle>
+
+<div class="gallery-container">
+
+  <carousel #carousel
+            [style.height.px]="600"
+            selectedBehaviour="auto"
+            [loop]="true"
+            [gestures]="false">
+    <ng-container *ngFor="let item of data$ | async; index as i">
+      <ng-template carouselItem>
+        <div class="full test-item" style="z-index: 2">
+          <img panzoomImage
+               [isActive]="carousel.snapshot.activePage === i"
+               (activeItem)="panzoom.setElement($event)"
+               [src]="item.data.fullHDURL"
+               (click)="panzoom.click()">
+        </div>
+      </ng-template>
+    </ng-container>
+
+    <carousel-layer panzoom
+                    #panzoom="panzoom"
+                    [zoomWithWheel]="zoomWithWheel"
+                    position="bottom">
+      <div direction="row">
+        <button iconButton (click)="panzoom.zoomIn()">
+          <fa-icon icon="magnifying-glass-plus" [fixedWidth]="true"></fa-icon>
+        </button>
+        <button iconButton (click)="panzoom.zoomOut()">
+          <fa-icon icon="magnifying-glass-minus" [fixedWidth]="true"></fa-icon>
+        </button>
+        <button iconButton (click)="panzoom.setOptions({cursor: 'grab', disablePan: false})">
+          <fa-icon icon="hand" [fixedWidth]="true"></fa-icon>
+        </button>
+        <button iconButton (click)="panzoom.reset()">
+          <fa-icon icon="rotate-back" [fixedWidth]="true"></fa-icon>
+        </button>
+      </div>
+    </carousel-layer>
+
+    <carousel-nav [space]="20" [clickBehavior]="'auto'"></carousel-nav>
+  </carousel>
+
+</div>

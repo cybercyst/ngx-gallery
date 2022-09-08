@@ -1,0 +1,110 @@
+:host {
+  display: block;
+}
+
+::ng-deep {
+  .carousel-item gallery-image {
+    background: black;
+  }
+
+  lightbox .mat-mini-fab {
+    line-height: 40px;
+  }
+}
+
+carousel {
+  border-radius: 3px;
+  height: 600px;
+}
+
+carousel-thumbs {
+  display: block;
+
+  ::ng-deep {
+    horizontal-centralised-carousel {
+      // background: rgb(0, 0, 0);
+      // background: linear-gradient(
+      //   180deg,
+      //   rgba(0, 0, 0, 0.5914959733893557) 0%,
+      //   rgba(0, 0, 0, 0.3197872899159664) 75%,
+      //   rgba(0, 0, 0, 0) 100%
+      // );
+    }
+
+    .carousel-item {
+      position: relative;
+      width: calc(100% - 25px);
+      height: calc(100% - 25px);
+      transition: width, height linear 200ms;
+      // margin-right: 15px;
+      // &:first-child {
+      //   margin-right: 0 !important;
+      // }
+
+      img {
+        opacity: 0.7;
+        transition: opacity ease 300ms;
+      }
+
+      &:hover {
+        img {
+          opacity: 1;
+        }
+      }
+
+      &.carousel-item-active {
+        width: calc(100% - 15px);
+        height: calc(100% - 15px);
+
+        img {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+gallery-image {
+  border-radius: 3px;
+}
+
+.grid-item {
+  border-radius: 0.2em;
+  overflow: hidden;
+  padding: 0;
+  width: 130px;
+  height: 70px;
+}
+
+.grid {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, 130px);
+}
+
+.grid-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+}
+
+.test-item {
+  position: relative;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+}
+
+.test-item-thumb {
+  border-radius: 3px;
+  font-size: 20px;
+  text-shadow: none;
+  overflow: hidden;
+  color: white;
+}

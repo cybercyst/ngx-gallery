@@ -1,0 +1,126 @@
+@mixin fullscreen() {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+
+  carousel {
+    --carousel-border-radius: 0;
+  }
+
+ .lightbox-content-wrapper > carousel {
+    box-shadow: none;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: unset !important;
+    max-height: unset !important;
+  }
+
+  carousel-thumbs {
+    .carousel-page {
+      padding: 10px;
+    }
+    .carousel-item {
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@mixin shadow() {
+  carousel, .carousel-item {
+    border: none !important;
+    box-shadow: 1px 1px 2px black !important;
+  }
+}
+
+@mixin fullscreen-wrapper() {
+  .g-backdrop {
+  }
+  //.g-btn-close {
+  //  position: fixed !important;
+  //}
+}
+
+::ng-deep {
+  @include fullscreen-wrapper();
+
+  .lightbox {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    &:focus {
+      outline: none;
+    }
+
+    carousel, .carousel-item {
+      //border: none !important;
+      //box-shadow: 1px 1px 2px black !important;
+    }
+
+    .lightbox-content-wrapper > carousel {
+      width: 1100px;
+      height: 800px;
+      max-width: 94vw;
+      max-height: 90vh;
+      box-shadow: 0 11px 15px -7px rgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
+    }
+
+    //@include shadow();
+  }
+
+  .fullscreen {
+    @include fullscreen();
+  }
+
+  .lightbox-wrapper {
+    height: 100%;
+    width: 100%;
+    // Centralize the child in case of full screen wrapper
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox-content-wrapper {
+    //background: black;
+    //border-radius: 4px;
+    //overflow: hidden;
+  }
+
+  .g-backdrop {
+    background-color: rgba(0, 0, 0, .32);
+  }
+
+  .g-overlay {
+    margin: auto;
+
+    @media only screen and (max-width: 480px) {
+      @include fullscreen();
+    }
+  }
+
+}
+
+.g-btn-close {
+  position: absolute;
+  right: 0.9em;
+  top: 0.9em;
+  z-index: 60;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0px 0px 1px black);
+  @media only screen and (max-width: 480px) {
+    right: 0.7em;
+    top: 0.7em;
+  }
+}

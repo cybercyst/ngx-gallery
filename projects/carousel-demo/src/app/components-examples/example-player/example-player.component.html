@@ -1,0 +1,44 @@
+<carousel style="height: 300px" [loop]="true">
+  <ng-container *ngFor="let item of items; index as i">
+    <ng-template carouselItem>
+      <div class="test-item"
+           [style.background]="item.color">
+        {{ i + 1 }}
+      </div>
+    </ng-template>
+    <ng-template carouselItemThumb>
+      <div class="test-item test-item-thumb" [style.background]="item.color">
+        {{ i + 1 }}
+      </div>
+    </ng-template>
+  </ng-container>
+
+  <carousel-player [pauseOn]="pauseOn.value"
+                   [speed]="speed.value"
+                   [reversed]="reversed.value"></carousel-player>
+
+  <carousel-thumbs [centralised]="false" [itemHeight]="40" mode="center-method"></carousel-thumbs>
+</carousel>
+
+<mat-form-field appearance="fill">
+  <mat-label>Pause on</mat-label>
+  <mat-select #pauseOn value="hover">
+    <mat-option value="hover">Hover</mat-option>
+    <mat-option value="click">Click</mat-option>
+    <mat-option value="none">None</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Speed</mat-label>
+  <input matInput #speed="matInput" type="number" value="3000">
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Reversed</mat-label>
+  <mat-select #reversed value="click">
+    <mat-option [value]="null">Unset</mat-option>
+    <mat-option value="true">True</mat-option>
+    <mat-option value="false">False</mat-option>
+  </mat-select>
+</mat-form-field>

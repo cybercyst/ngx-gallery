@@ -1,0 +1,12 @@
+<div class="docs-component-viewer-nav">
+  <div class="docs-component-viewer-nav-content">
+    <mat-nav-list>
+      <a *ngFor="let item of story.routes | keyvalue"
+         mat-list-item
+         [routerLink]="['..', item.value.path]"
+         routerLinkActive="active">
+        {{ item.value.title }}
+      </a>
+    </mat-nav-list>
+  </div>
+</div>

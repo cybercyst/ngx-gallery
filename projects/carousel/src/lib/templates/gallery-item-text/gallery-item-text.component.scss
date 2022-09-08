@@ -1,0 +1,22 @@
+:host {
+  --carousel-item-border-radius: 5px;
+  position: absolute;
+  color: white;
+  margin: 2em;
+  padding: 2em;
+  border-radius: var(--carousel-item-border-radius);
+
+  &[position="top"] {
+    top: 0;
+  }
+
+  &[position="bottom"] {
+    bottom: 0;
+  }
+
+  ::ng-deep {
+    h1, h4 {
+      background: rgba(0, 0, 0, 0.4);
+    }
+  }
+}

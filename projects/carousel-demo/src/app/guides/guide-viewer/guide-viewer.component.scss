@@ -1,0 +1,12 @@
+:host {
+  margin-top: var(--header-height);
+}
+
+.page-content {
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  padding-top: 15px;
+}

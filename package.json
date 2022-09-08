@@ -5,7 +5,10 @@
     "start-demo": "ng serve ng-gallery-demo --host 0.0.0.0",
     "build-demo": "ng build ng-gallery-demo --configuration production",
     "build-lib": "ng build ng-gallery --configuration production",
-    "publish-lib": "npm publish ./dist/ng-gallery"
+    "publish-lib": "npm publish ./dist/ng-gallery",
+    "start-carousel-demo": "ng serve carousel-demo",
+    "build-carousel-demo": "ng build carousel-demo --configuration production",
+    "build-carousel-lib": "ng build carousel --configuration production"
   },
   "repository": {
     "type": "git",
@@ -32,7 +35,11 @@
     "ngx-highlightjs": "^9.0.0",
     "ngx-progressbar": "^11.0.0",
     "ngx-scrollbar": "^12.0.0",
+    "marked": "^4.0.19",
+    "ng-animate": "^2.0.1",
+    "randomcolor": "^0.6.2",
     "rxjs": "~7.5.6",
+    "smoothscroll-polyfill": "^0.4.4",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },

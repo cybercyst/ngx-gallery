@@ -1,0 +1,26 @@
+<ng-container *ngIf="carouselRef.state$ | async as state">
+  <div class="slider-centralizer-container slider-centralizer-container-{{orientation}}"
+       [class.default-mode]="!centralised"
+       [ngStyle]="containerStyles">
+
+    <div class="slider-centralizer"
+         [class.slider-centralizer-animated]="state.behavior === 'smooth'"
+         [ngStyle]="centralizeStyles">
+
+      <centralised-slider [state]="state"
+                          [orientation]="orientation"
+                          [scrollOffset]="scrollOffset"
+                          [itemWidth]="itemWidth"
+                          [itemHeight]="itemHeight"
+                          (itemClick)="onItemClick($event)">
+      </centralised-slider>
+    </div>
+
+    <div *ngIf="centralised"
+         class="carousel-page-highlight-active"
+         [style.width.px]="itemWidth"
+         [style.height.px]="itemHeight">
+    </div>
+  </div>
+</ng-container>
+

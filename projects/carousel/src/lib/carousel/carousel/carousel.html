@@ -1,0 +1,19 @@
+<ng-content select="carousel-dots, carousel-thumbs, carousel-player, carousel-counter, carousel-layer"></ng-content>
+
+<div *ngIf="carouselRef.state$ | async as state" class="slider-container">
+
+  <div class="carousel-empty" *ngIf="!state.pages.length">Carousel is empty!</div>
+
+  <ng-content select="carousel-nav"></ng-content>
+
+  <slider [state]="state"
+          [orientation]="orientation"
+          [gestures]="gestures"
+          [sensorThrottleTime]="sensorThrottleTime"
+          [sensorDisabled]="sensorDisabled"
+          [panSensitivity]="panSensitivity"
+          (action)="onSliderAction($event.action, $event.behavior)"
+          (scrollIndexChange)="afterPageChanged.emit($event)"
+          (itemClick)="itemClick.emit($event)">
+  </slider>
+</div>

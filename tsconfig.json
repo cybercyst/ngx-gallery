@@ -20,6 +20,9 @@
     ],
     "allowSyntheticDefaultImports": true,
     "paths": {
+      "ng-gallery/next": [
+        "projects/carousel/src/public-api"
+      ],
       "ng-gallery": [
         "projects/ng-gallery/src/public-api"
       ],

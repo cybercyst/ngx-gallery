@@ -1,0 +1,39 @@
+:host {
+  --carousel-layer-color: var(--carousel-color, #fff);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+
+  &[position="bottom"] {
+    //flex-direction: column-reverse;
+    grid-area: 'bottom';
+  }
+
+  ::ng-deep {
+    button[icon-button], button[iconButton] {
+      cursor: pointer;
+      color: var(--carousel-layer-color);
+      background: transparent;
+      outline: none;
+      border-radius: 50%;
+      overflow: hidden;
+      border: none;
+      height: 50px;
+      width: 50px;
+      font-size: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0px 0px 1px black);
+    }
+
+    *[direction="row"] {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+}

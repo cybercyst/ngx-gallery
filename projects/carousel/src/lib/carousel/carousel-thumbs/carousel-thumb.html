@@ -1,0 +1,70 @@
+<ng-container *ngIf="host.carouselRef.state$ | async as state">
+
+  <ng-container *ngIf="mode ==='center-method'; else default">
+    <ng-container *ngIf="thumbOrientation === 'horizontal'; else vertical">
+      <horizontal-centralised-carousel [selectedItem]="state.activeItem"
+                                       [selectedBehavior]="state.behavior"
+                                       [clickBehavior]="clickBehavior"
+                                       [itemWidth]="itemWidth"
+                                       [itemHeight]="itemHeight"
+                                       [centralised]="centralised"
+                                       [maxShownItems]="maxShownItems"
+                                       (itemClick)="onItemClick($event)">
+        <ng-container *ngFor="let item of host.contentThumbItems?.toArray()">
+          <ng-template carouselItem>
+            <ng-template [ngTemplateOutlet]="item.template"></ng-template>
+          </ng-template>
+        </ng-container>
+      </horizontal-centralised-carousel>
+    </ng-container>
+
+    <ng-template #vertical>
+      <vertical-centralised-carousel [selectedItem]="state.activeItem"
+                                     [selectedBehavior]="state.behavior"
+                                     [clickBehavior]="clickBehavior"
+                                     [itemWidth]="itemWidth"
+                                     [itemHeight]="itemHeight"
+                                     [centralised]="centralised"
+                                     [maxShownItems]="maxShownItems"
+                                     (itemClick)="onItemClick($event)">
+        <ng-container *ngFor="let item of host.contentThumbItems?.toArray()">
+          <ng-template carouselItem>
+            <ng-template [ngTemplateOutlet]="item.template"></ng-template>
+          </ng-template>
+        </ng-container>
+      </vertical-centralised-carousel>
+    </ng-template>
+  </ng-container>
+
+  <ng-template #default>
+    <ng-container *ngIf="position === 'top' || position ==='bottom'; else vertical">
+      <carousel orientation="horizontal"
+                [style.height.px]="itemHeight"
+                [perPage]="perPage"
+                [selectedItem]="state.activeItem"
+                [selectedBehaviour]="state.behavior"
+                (itemClick)="onItemClick($event)">
+        <ng-container *ngFor="let item of host.contentThumbItems?.toArray()">
+          <ng-template carouselItem>
+            <ng-template [ngTemplateOutlet]="item.template"></ng-template>
+          </ng-template>
+        </ng-container>
+      </carousel>
+    </ng-container>
+
+    <ng-template #vertical>
+      <carousel orientation="vertical"
+                [style.width.px]="itemWidth"
+                [perPage]="perPage"
+                [selectedItem]="state.activeItem"
+                [selectedBehaviour]="state.behavior"
+                (itemClick)="onItemClick($event)">
+        <ng-container *ngFor="let item of host.contentThumbItems?.toArray()">
+          <ng-template carouselItem>
+            <ng-template [ngTemplateOutlet]="item.template"></ng-template>
+          </ng-template>
+        </ng-container>
+      </carousel>
+    </ng-template>
+  </ng-template>
+</ng-container>

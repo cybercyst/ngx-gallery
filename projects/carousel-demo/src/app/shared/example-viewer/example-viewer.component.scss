@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  padding: 20px 0;
+}
+
+.docs-example-viewer-wrapper {
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 4px;
+  margin: 24px 0;
+}
+
+.docs-example-viewer-title {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 8px 8px 8px 16px;
+  color: #0000008a;
+}
+
+.docs-example-viewer-title-spacer {
+  flex: 1 1 auto;
+}
+
+.docs-example-source-copy {
+  color: #0000008a;
+}
+
+.button-bar {
+  float: right;
+  padding: 8px;
+}
+
+.docs-example-viewer-body {
+  padding: 30px;
+}

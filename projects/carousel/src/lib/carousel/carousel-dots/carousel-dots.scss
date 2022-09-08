@@ -1,0 +1,67 @@
+:host {
+  &[compact="true"] {
+    horizontal-centralised-carousel, vertical-centralised-carousel {
+      position: absolute;
+    }
+
+    &[position="top"] {
+      horizontal-centralised-carousel {
+        top: 0;
+      }
+    }
+
+    &[position="bottom"] {
+      horizontal-centralised-carousel {
+        bottom: 0;
+      }
+    }
+
+    &[position="left"] {
+      vertical-centralised-carousel {
+        left: 0;
+      }
+    }
+
+    &[position="right"] {
+      vertical-centralised-carousel {
+        right: 0;
+      }
+    }
+  }
+
+  ::ng-deep {
+
+    .slider-centralizer-container {
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      //border-radius: 6px;
+      //background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .carousel-page-highlight-active {
+      background-color: white;
+      opacity: 0.3;
+    }
+
+    //.default-mode {
+    .carousel-page-active {
+      .carousel-item {
+        opacity: 1;
+      }
+    }
+
+    //}
+
+
+    .carousel-item {
+      width: 80% !important;
+      height: 80% !important;
+      //background: white !important;
+      //background-color: transparent !important;
+      //border-radius: 50%;
+      color: white !important;
+      opacity: 0.5;
+      //color: black !important;
+      //box-shadow: 0 0 2px black;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+carousel {
+  height: 250px;
+}
+
+.test-item {
+  --margin-size: 10px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+
+  &:after {
+    position: absolute;
+    content: '';
+    top: var(--margin-size);
+    left: var(--margin-size);
+    right: var(--margin-size);
+    bottom: var(--margin-size);
+    border-radius: 16px;
+    z-index: 2;
+    background: white;
+  }
+
+  ::ng-deep {
+    span {
+      z-index: 10;
+      font-size: 72px;
+      background: inherit;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}

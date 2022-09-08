@@ -1,0 +1,19 @@
+:host {
+  flex: 1;
+  margin-top: var(--header-height);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+}
+
+.docs-component-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+main {
+  flex: 1;
+  display: flex;
+}
