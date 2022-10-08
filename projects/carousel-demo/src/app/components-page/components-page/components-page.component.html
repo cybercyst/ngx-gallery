@@ -1,12 +1,12 @@
 <mat-sidenav-container>
-  <mat-sidenav mode="over">
+  <mat-sidenav mode="over" [opened]="sideNavOpened" (openedChange)="sideNavOpened = $event">
     <component-nav class="sidenav"></component-nav>
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="docs-component-sidenav-content">
-      <app-header>{{ title$ | async }}</app-header>
+      <app-header (sideNavOpenChange)="sideNavOpened = true">{{ title$ | async }}</app-header>
       <main>
-        <component-nav></component-nav>
+        <component-nav fxHide [fxShow.gt-sm]="true"></component-nav>
         <router-outlet></router-outlet>
       </main>
       <app-footer></app-footer>

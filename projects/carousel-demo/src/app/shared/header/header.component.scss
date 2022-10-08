@@ -3,9 +3,8 @@ header {
   box-shadow: inset 0 -3px 8px 0 rgba(0, 0, 0, 0.08);
   background-color: hsl(var(--primary-color-hue), 89.7%, 54.1%);
   display: flex;
-  flex-direction: column;
+  align-items: center;
   color: #fff;
-  padding-left: 20px;
 
   h1 {
     font-weight: 300;
@@ -13,5 +12,26 @@ header {
     padding: 28px 8px;
     font-size: 20px;
     outline: none;
+  }
+}
+
+.collapse-button-wrapper {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    padding: 0;
+    margin: 8px;
+    min-width: 64px;
+  }
+
+  mat-icon {
+    font-size: 30px;
+    height: 64px;
+    width: 64px;
+    line-height: 64px;
   }
 }

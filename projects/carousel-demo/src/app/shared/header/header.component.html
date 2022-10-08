@@ -1,4 +1,7 @@
-<header>
+<header [ngStyle.gt-sm]="{ 'paddingLeft.px': 20 }">
+  <div class="collapse-button-wrapper" [fxHide.gt-sm]="true">
+    <button mat-button (click)="sideNavOpenChange.emit()"><mat-icon>menu</mat-icon></button>
+  </div>
   <h1>
     <ng-content></ng-content>
   </h1>
