@@ -1,5 +1,7 @@
 <ng-container *ngIf="data$ | async as data">
-  <ng-container *ngIf="data.docs; else noData">
+  <div *ngIf="data.docs; else noData"
+       class="component-viewer-wrapper"
+       [ngStyle.lt-sm]="{ padding: '20px 15px' }" >
     <nav *ngIf="paramName$ | async as paramName"
          mat-tab-nav-bar>
       <a *ngFor="let link of links"
@@ -15,7 +17,7 @@
     <div class="component-viewer-content">
       <router-outlet></router-outlet>
     </div>
-  </ng-container>
+  </div>
 
   <ng-template #noData>
     <app-error>
