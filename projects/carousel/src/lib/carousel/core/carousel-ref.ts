@@ -6,7 +6,7 @@ import {
   CarouselItem,
   CarouselScrollEvent,
   CarouselState,
-  CarousePage
+  CarouselPage
 } from '../carousel.model';
 
 interface CarouselIndex {
@@ -96,7 +96,7 @@ export class CarouselRef {
    */
   load(items: CarouselItem[], selectedItem: number = 0) {
     this.items = items;
-    const pages: CarousePage[] = [];
+    const pages: CarouselPage[] = [];
     const perPage: number = this.snapshot.perPage;
     const extra: number = items.length % perPage;
     const pagesCount = Math.floor(extra ? (items.length / perPage) + extra : items.length / perPage);

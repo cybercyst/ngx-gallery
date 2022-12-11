@@ -1,4 +1,4 @@
-import { Component, Optional, Inject, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Optional, Inject, ElementRef, ChangeDetectionStrategy, Input } from '@angular/core';
 import { CAROUSEL_CONFIG, CarouselBehavior, CarouselConfig } from '../carousel.model';
 import { CarouselCore } from '../core/carousel-core';
 
@@ -11,6 +11,12 @@ import { CarouselCore } from '../core/carousel-core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Carousel extends CarouselCore {
+
+  @Input() itemSize: number | string | 'auto';
+
+  @Input() itemCrossSize: string | number | 'auto';
+
+  @Input() centralized: boolean;
 
   constructor(@Optional() @Inject(CAROUSEL_CONFIG) protected customConfig: CarouselConfig, el: ElementRef) {
     super(customConfig, el);

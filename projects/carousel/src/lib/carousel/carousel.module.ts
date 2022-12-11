@@ -24,6 +24,9 @@ import { Slider } from './carousel/slider/slider';
 import { CarouselPlayer } from './carousel-player/carousel-player';
 import { CarouselCounter } from './carousel-counter/carousel-counter';
 import { CarouselLayer } from './carousel-layer/carousel-layer';
+import { CarouselViewport } from './carousel/new-slider/viewport/carousel-viewport';
+import { NewSlider } from './carousel/new-slider/slider';
+import { ItemComponent } from './carousel/new-slider/item/item.component';
 
 @NgModule({
   imports: [
@@ -50,9 +53,12 @@ import { CarouselLayer } from './carousel-layer/carousel-layer';
     VerticalCentralisedCarousel,
     HorizontalCentralisedCarousel,
     Slider,
+    NewSlider,
     CarouselPlayer,
     CarouselCounter,
-    CarouselLayer
+    CarouselLayer,
+    CarouselViewport,
+    ItemComponent
   ],
   exports: [
     Carousel,

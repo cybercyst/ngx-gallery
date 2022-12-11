@@ -1,4 +1,4 @@
-<carousel style="height: 300px" [loop]="true">
+<carousel style="height: 300px">
   <ng-container *ngFor="let item of items; index as i">
     <ng-template carouselItem>
       <div class="test-item"
@@ -17,7 +17,7 @@
                    [speed]="speed.value"
                    [reversed]="reversed.value"></carousel-player>
 
-  <carousel-thumbs [centralised]="false" [itemHeight]="40" mode="center-method"></carousel-thumbs>
+  <carousel-thumbs [centralized]="false" [itemHeight]="40" mode="center-method"></carousel-thumbs>
 </carousel>
 
 <mat-form-field appearance="fill">

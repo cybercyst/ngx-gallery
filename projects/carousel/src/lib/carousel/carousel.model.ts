@@ -58,7 +58,7 @@ export interface CarouselState {
   hasPrevPage?: boolean;
   activeItem?: number;
   activePage?: number;
-  pages?: CarousePage[];
+  pages?: CarouselPage[];
   behavior?: CarouselBehavior;
 }
 
@@ -80,7 +80,7 @@ export interface CarouselItem {
 }
 
 /** Carousel page */
-export interface CarousePage {
+export interface CarouselPage {
   index: number;
   items: CarouselItem[];
 }

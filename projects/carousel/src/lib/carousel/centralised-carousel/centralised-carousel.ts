@@ -67,34 +67,34 @@ export class CentralisedCarousel extends CarouselCore implements AfterViewInit, 
   }
 
   private getCentralizeStyles(state: CarouselState): any {
-    const itemSize: number = this.itemSize;
-    const viewportSize: number = this.getDisplayedSize(state.pages.length);
-    const hiddenSize: number = (itemSize * state.pages.length) - viewportSize;
-    const activePagePosition: number = itemSize * state.activePage;
-    const centerOffset: number = viewportSize / 2;
-    const position: number = activePagePosition - centerOffset;
-    const centeredPosition: number = position + (itemSize / 2);
+    // const itemSize: number = this.itemSize;
+    // const viewportSize: number = this.getDisplayedSize(state.pages.length);
+    // const hiddenSize: number = (itemSize * state.pages.length) - viewportSize;
+    // const activePagePosition: number = itemSize * state.activePage;
+    // const centerOffset: number = viewportSize / 2;
+    // const position: number = activePagePosition - centerOffset;
+    // const centeredPosition: number = position + (itemSize / 2);
+    //
+    // if (!this.centralised) {
+    //   // Scroll viewport to the center position
+    //   this.scrollOffset = centeredPosition;
+    //   return;
+    // }
+    // // Scroll viewport to the center position
+    // this.scrollOffset = centeredPosition;
+    //
+    // if (centeredPosition < 0) {
+    //   return this.getTransformValue(-centeredPosition);
+    // }
 
-    if (!this.centralised) {
-      // Scroll viewport to the center position
-      this.scrollOffset = centeredPosition;
-      return;
-    }
-    // Scroll viewport to the center position
-    this.scrollOffset = centeredPosition;
-
-    if (centeredPosition < 0) {
-      return this.getTransformValue(-centeredPosition);
-    }
-
-    if (centeredPosition >= hiddenSize) {
-      const displayedCount: number = Math.floor(viewportSize / this.itemSize);
-      const centerDeltaSize: number = displayedCount % 2 ? 1 : 0.5;
-      const endDisplayedCount = displayedCount / 2;
-      const delta = centerOffset - (endDisplayedCount * itemSize);
-      const endIndex = Math.floor(endDisplayedCount) - (state.pages.length - state.activePage);
-      return this.getTransformValue(-((centerDeltaSize + endIndex) * itemSize) - delta);
-    }
+    // if (centeredPosition >= hiddenSize) {
+    //   const displayedCount: number = Math.floor(viewportSize / this.itemSize);
+    //   const centerDeltaSize: number = displayedCount % 2 ? 1 : 0.5;
+    //   const endDisplayedCount = displayedCount / 2;
+    //   const delta = centerOffset - (endDisplayedCount * itemSize);
+    //   const endIndex = Math.floor(endDisplayedCount) - (state.pages.length - state.activePage);
+    //   return this.getTransformValue(-((centerDeltaSize + endIndex) * itemSize) - delta);
+    // }
 
     return this.getTransformValue(0);
   }

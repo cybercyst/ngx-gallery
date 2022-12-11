@@ -1,0 +1,15 @@
+<carousel-viewport [itemSize]="itemSize"
+                   [orientation]="orientation"
+                   [adapter]="adapter"
+                   [centralized]="centralized"
+                   (resizeSensor)="onHostResize($event[0])"
+                   [sensorThrottleTime]="sensorThrottleTime"
+                   [sensorDisabled]="sensorDisabled">
+  <carousel-page *ngFor="let page of state?.pages"
+                 [sliderId]="sliderId"
+                 [page]="page"
+                 [activeItem]="state.activeItem"
+                 [activePage]="state.activePage"
+                 (itemClick)="itemClick.emit($event)">
+  </carousel-page>
+</carousel-viewport>

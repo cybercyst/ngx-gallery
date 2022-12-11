@@ -32,10 +32,11 @@
 
   <carousel style="height: 300px" [selectedItem]="5">
     <carousel-thumbs [compact]="compact"
+                     [itemWidth]="120"
                      [itemHeight]="50"
                      [clickBehavior]="clickBehavior"
                      [position]="position"
-                     [centralised]="centralised"
+                     [centralized]="centralised"
                      [mode]="mode"></carousel-thumbs>
     <ng-container *ngFor="let item of items; index as i">
       <ng-template carouselItem>

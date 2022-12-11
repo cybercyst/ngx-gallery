@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, Optional, ChangeDetectionStrategy } from '@angular/core';
 import { Carousel } from '../carousel/carousel';
-import { CarouselBehavior } from '../carousel.model';
+import { CAROUSEL_ORIENTATION, CarouselBehavior, CarouselOrientation } from '../carousel.model';
+import { ThumbnailsPosition } from '../../gallery.model';
 
 @Component({
   host: {
@@ -15,6 +16,10 @@ import { CarouselBehavior } from '../carousel.model';
 })
 export class CarouselDots {
 
+  get thumbOrientation(): CarouselOrientation {
+    return this.position === ThumbnailsPosition.Top || this.position === ThumbnailsPosition.Bottom
+      ? CAROUSEL_ORIENTATION.Horizontal : CAROUSEL_ORIENTATION.Vertical;
+  }
   /**
    * Whether to show the number on the items
    */

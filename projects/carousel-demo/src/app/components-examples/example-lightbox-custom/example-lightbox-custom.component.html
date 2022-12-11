@@ -1,7 +1,7 @@
 <button mat-button color="primary" (click)="lightbox1.open(0)">Open Lightbox</button>
 
 <ng-template lightbox #lightbox1="lightbox" [fullscreen]="true">
-  <carousel #carousel [loop]="true"
+  <carousel #carousel
             [selectedItem]="lightbox1.selected">
     <ng-container *ngFor="let item of data$ | async; index as i">
       <ng-template carouselItem>
@@ -32,7 +32,7 @@
 <!--                     [itemWidth]="150">-->
 <!--    </carousel-thumbs>-->
     <carousel-thumbs mode="center-method"
-                     [centralised]="false"
+                     [centralized]="false"
                      position="bottom"
                      [compact]="false"
                      [itemHeight]="90"

@@ -1,8 +1,8 @@
-import { Component, Input, Output, EventEmitter, Optional, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Optional, Output } from '@angular/core';
 import { Carousel } from '../carousel/carousel';
-import { CAROUSEL_ORIENTATION, CarouselBehavior } from '../carousel.model';
-import { ThumbnailsPosition } from '../../gallery.model';
+import { CAROUSEL_ORIENTATION, CarouselBehavior, CarouselOrientation } from '../carousel.model';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { ThumbnailsPosition } from '../../gallery.model';
 
 @Component({
   host: {
@@ -17,21 +17,23 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 })
 export class CarouselThumbs {
 
-  get thumbOrientation() {
+  get thumbOrientation(): CarouselOrientation {
     return this.position === ThumbnailsPosition.Top || this.position === ThumbnailsPosition.Bottom
       ? CAROUSEL_ORIENTATION.Horizontal : CAROUSEL_ORIENTATION.Vertical;
   }
 
+  orientation: CarouselOrientation;
+
   /**
    * Whether or not the active item is always positioned the center of the carousel
    */
-  @Input() centralised: boolean = true;
+  @Input() centralized: boolean = true;
 
 
   @Input() mode: 'default' | 'center-method' = 'default';
 
 
-  @Input() perPage: number = 3;
+  @Input() perPage: number = 1;
 
   /**
    * Whether or not it overlays the carousel

@@ -47,13 +47,17 @@
   <input matInput type="number" [(ngModel)]="selectedItem">
 </mat-form-field>
 
-<mat-slide-toggle [(ngModel)]="loop">Loop</mat-slide-toggle>
+
+<mat-form-field appearance="fill">
+  <mat-label>Item Size</mat-label>
+  <input matInput [(ngModel)]="itemSize">
+</mat-form-field>
 
 <mat-slide-toggle [(ngModel)]="gestures">Gestures</mat-slide-toggle>
 
 <div class="gallery-container">
-  <carousel [mode]="mode"
-            [loop]="loop"
+  <carousel [itemSize]="itemSize"
+            [mode]="mode"
             [panSensitivity]="panSensitivity"
             [cacheSize]="cacheSize"
             [orientation]="orientation"
@@ -65,8 +69,10 @@
     <ng-container *ngFor="let item of items; index as i">
       <ng-template carouselItem>
         <div class="test-item"
-             [style.background]="'linear-gradient(to right top, ' + item.color1 + ',' + item.color2 + ')'">
-          <span>{{ i + 1 }}</span>
+             [style.background]="item.color1">
+<!--          [style.background]="'linear-gradient(to right top, ' + item.color1 + ',' + item.color2 + ')'">-->
+          <h4>{{ i + 1 }}</h4>
+          <div><sub>{{ item.width }}x{{ item.height }}</sub></div>
         </div>
       </ng-template>
     </ng-container>

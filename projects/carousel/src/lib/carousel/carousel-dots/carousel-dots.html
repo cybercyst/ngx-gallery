@@ -1,44 +1,16 @@
-<ng-container *ngIf="host.carouselRef.state$ | async as state">
-
-  <ng-container *ngIf="position === 'top' || position ==='bottom'; else vertical">
-    <horizontal-centralised-carousel [selectedItem]="state.activeItem"
-                                     [selectedBehavior]="state.behavior"
-                                     [clickBehavior]="clickBehavior"
-                                     [itemWidth]="itemWidth"
-                                     [itemHeight]="itemHeight"
-                                     [centralised]="centralised"
-                                     [maxShownItems]="maxShownItems"
-                                     (itemClick)="onItemClick($event)">
-      <ng-container *ngFor="let page of state.pages; index as i">
-        <ng-container *ngFor="let item of page.items">
-          <ng-template carouselItem>
-            <div class="test-item">
-              {{ i + 1 }}
-            </div>
-          </ng-template>
-        </ng-container>
-      </ng-container>
-    </horizontal-centralised-carousel>
+<carousel *ngIf="host.carouselRef.state$ | async as state"
+          [selectedItem]="state.activeItem"
+          [orientation]="thumbOrientation"
+          [selectedBehaviour]="state.behavior"
+          [itemSize]="itemWidth"
+          [itemCrossSize]="itemHeight"
+          [centralized]="centralised"
+          (itemClick)="onItemClick($event)">
+  <ng-container *ngFor="let page of state.pages; index as i">
+    <ng-container *ngFor="let item of page.items">
+      <ng-template carouselItem>
+        <div class="test-item">{{ i + 1 }}</div>
+      </ng-template>
+    </ng-container>
   </ng-container>
-
-  <ng-template #vertical>
-    <vertical-centralised-carousel [selectedItem]="state.activeItem"
-                                   [selectedBehavior]="state.behavior"
-                                   [clickBehavior]="clickBehavior"
-                                   [itemWidth]="itemWidth"
-                                   [itemHeight]="itemHeight"
-                                   [centralised]="centralised"
-                                   [maxShownItems]="maxShownItems"
-                                   (itemClick)="onItemClick($event)">
-      <ng-container *ngFor="let page of state.pages; index as i">
-        <ng-container *ngFor="let item of page.items">
-          <ng-template carouselItem>
-            <div class="test-item">
-              {{ i + 1 }}
-            </div>
-          </ng-template>
-        </ng-container>
-      </ng-container>
-    </vertical-centralised-carousel>
-  </ng-template>
-</ng-container>
+</carousel>

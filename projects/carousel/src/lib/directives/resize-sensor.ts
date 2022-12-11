@@ -110,11 +110,8 @@ export class ResizeSensor implements AfterContentInit, OnDestroy {
 
     if (this.platform.isBrowser) {
 
-      const stream = new Observable((observer: Observer<ReadonlyArray<ResizeObserverEntry>>) => {
-        this._resizeObserver = new ResizeObserver((e: ReadonlyArray<ResizeObserverEntry>) => {
-          // console.log('Changed ---> Update');
-          observer.next(e);
-        });
+      const stream: Observable<ReadonlyArray<ResizeObserverEntry>> = new Observable((observer: Observer<ReadonlyArray<ResizeObserverEntry>>) => {
+        this._resizeObserver = new ResizeObserver((e: ReadonlyArray<ResizeObserverEntry>) => observer.next(e));
         this._resizeObserver.observe(this.el.nativeElement);
       });
 

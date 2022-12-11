@@ -59,9 +59,7 @@ export class CarouselCore implements AfterContentInit, OnChanges, OnDestroy {
 
   protected readonly destroyed$ = new Subject<void>();
 
-  get itemSize(): number {
-    return undefined;
-  }
+  // itemSize: number;
 
   get state(): Observable<CarouselState> {
     return this.carouselRef.state$;
@@ -74,7 +72,6 @@ export class CarouselCore implements AfterContentInit, OnChanges, OnDestroy {
   @Input() selectedPage: number;
   @Input() selectedItem: number;
   @Input() selectedBehaviour: 'smooth' | 'auto' = 'smooth';
-  @Input() loop: boolean = this.config.loop;
   @Input() perPage: number = this.config.perPage;
   @Input() mode: CarouselMode = this.config.mode;
   @Input() gestures: boolean = this.config.gestures;
@@ -117,7 +114,6 @@ export class CarouselCore implements AfterContentInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges) {
     this.carouselRef.configure({
-      loop: this.loop,
       perPage: this.perPage
     });
 

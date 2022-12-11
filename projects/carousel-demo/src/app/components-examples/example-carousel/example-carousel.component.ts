@@ -9,7 +9,9 @@ import { CAROUSEL_MODE, CAROUSEL_ORIENTATION, CarouselBehavior, CarouselMode, Ca
 })
 export class ExampleCarouselComponent implements OnInit {
 
-  perPage: number = 1;
+  itemSize: string = '';
+
+  perPage: number = 3;
 
   selectedPage = 0;
   selectedItem = 0;
@@ -25,13 +27,20 @@ export class ExampleCarouselComponent implements OnInit {
   orientation: CarouselOrientation = CAROUSEL_ORIENTATION.Horizontal;
   mode: CarouselMode = CAROUSEL_MODE.Strict;
 
-  items: { color1: string, color2: string }[];
+  items: { color1: string, color2: string, width: number, height: number }[];
 
   ngOnInit() {
-    this.items = Array.from(new Array(18)).map(() => ({
+    this.items = Array.from(new Array(20)).map(() => ({
       color1: randomColor(),
-      color2: randomColor()
+      color2: randomColor(),
+      width: getRandomInt(200, 500),
+      height: getRandomInt(200, 500)
     }));
   }
+}
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

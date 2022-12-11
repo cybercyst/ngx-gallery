@@ -10,7 +10,7 @@
 </div>
 
 <ng-template lightbox #lightbox1="lightbox" [fullscreen]="false">
-  <carousel #carousel [loop]="true"
+  <carousel #carousel
             [selectedItem]="lightbox1.selected">
     <ng-container *ngFor="let item of items; index as i">
       <ng-template carouselItem>
@@ -50,9 +50,7 @@
 
     <carousel-player></carousel-player>
 
-    <carousel-thumbs mode="center-method"
-                     [centralised]="false"
-                     [perPage]="4"
+    <carousel-thumbs [centralized]="false"
                      [compact]="true"
                      [itemHeight]="90"
                      [itemWidth]="150">

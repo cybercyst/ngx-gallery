@@ -6,14 +6,19 @@
 
   <ng-content select="carousel-nav"></ng-content>
 
-  <slider [state]="state"
-          [orientation]="orientation"
-          [gestures]="gestures"
-          [sensorThrottleTime]="sensorThrottleTime"
-          [sensorDisabled]="sensorDisabled"
-          [panSensitivity]="panSensitivity"
-          (action)="onSliderAction($event.action, $event.behavior)"
-          (scrollIndexChange)="afterPageChanged.emit($event)"
-          (itemClick)="itemClick.emit($event)">
-  </slider>
+  <new-slider [state]="state"
+              [mode]="mode"
+              [perPage]="perPage"
+              [centralized]="centralized"
+              [itemSize]="itemSize"
+              [itemCrossSize]="itemCrossSize"
+              [orientation]="orientation"
+              [gestures]="gestures"
+              [sensorThrottleTime]="sensorThrottleTime"
+              [sensorDisabled]="sensorDisabled"
+              [panSensitivity]="panSensitivity"
+              (action)="onSliderAction($event.action, $event.behavior)"
+              (scrollIndexChange)="afterPageChanged.emit($event)"
+              (itemClick)="itemClick.emit($event)">
+  </new-slider>
 </div>

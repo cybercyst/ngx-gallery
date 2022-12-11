@@ -1,0 +1,71 @@
+:host {
+  flex: 1;
+  display: flex;
+  scrollbar-width: none; /* Firefox 64 */
+  -ms-overflow-style: none; /* Internet Explorer 11 */
+  &::-webkit-scrollbar { /** WebKit */
+    display: none;
+  }
+
+  width: 100%;
+  height: 100%;
+
+  // Disable mouse click on gallery items/thumbnails when the slider is being dragged using the mouse
+  &.g-sliding, &.g-scrolling {
+    .g-slider-content {
+      pointer-events: none;
+    }
+  }
+
+  &[orientation="horizontal"] {
+    --page-width: var(--page-size);
+    --page-height: var(--page-cross-size);
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    flex-direction: row;
+
+    .g-slider-content {
+      flex-direction: row;
+      height: 100%;
+    }
+  }
+
+  &[orientation="vertical"] {
+    --page-width: var(--page-cross-size);
+    --page-height: var(--page-size);
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    flex-direction: column;
+
+    .g-slider-content {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+
+  &[centralized="true"] {
+    &:before, &:after {
+      content: '';
+    }
+
+    &:before {
+      flex: 0 0 var(--slider-centralize-start-size);
+    }
+
+    &:after {
+      flex: 0 0 var(--slider-centralize-end-size);
+    }
+  }
+}
+
+.g-slider-content {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+

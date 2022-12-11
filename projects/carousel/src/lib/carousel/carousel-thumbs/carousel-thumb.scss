@@ -1,4 +1,10 @@
 :host {
+  display: block;
+  position: relative;
+  grid-area: attr(position);
+
+  //width: var(--page-size);
+  //height: var(--page-cross-size);
 
   &[compact="true"] {
     carousel, horizontal-centralised-carousel, vertical-centralised-carousel {
