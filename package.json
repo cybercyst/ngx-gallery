@@ -8,7 +8,10 @@
     "publish-lib": "npm publish ./dist/ng-gallery",
     "start-carousel-demo": "ng serve carousel-demo --host 0.0.0.0",
     "build-carousel-demo": "ng build carousel-demo --configuration production",
-    "build-carousel-lib": "ng build carousel --configuration production"
+    "build-carousel-lib": "ng build carousel --configuration production",
+    "compodoc:build": "compodoc -p ./tsconfig.doc.json -e json -d ./projects/carousel-demo/src/assets/docs",
+    "compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -e json -s",
+    "compodoc:serve": "compodoc -s"
   },
   "repository": {
     "type": "git",
@@ -30,6 +33,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@compodoc/compodoc": "^1.1.19",
     "@panzoom/panzoom": "^4.5.1",
     "chance": "^1.1.8",
     "hammerjs": "^2.0.8",

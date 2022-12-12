@@ -1,6 +1,7 @@
 The `<carousel>` is a slideshow component for cycling through slides of images, videos, components or any type of HTML content.
 
-The carousel organize content into separate views where only one view can be visible at a time.
+The carousel organize content into separate views where only one view can be active at a time.
+
 
 <!-- example(ExampleCarouselComponent) -->
 
@@ -31,6 +32,8 @@ You can customize the template of the item easily using as of item so easily usi
 ```
 
 #### Multiple elements
+
+By default, each view contains one carousel item, use `[perPage]` to specify the number of items displayed per view.
 
 <!-- example(ExampleMultipleItemCarouselComponent) -->
 

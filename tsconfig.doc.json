@@ -1,0 +1,8 @@
+{
+  "include": [
+    "projects/carousel-demo/src/**/*.ts"
+  ],
+  "exclude": [
+    "projects/carousel-demo/src/**/*.spec.ts"
+  ]
+}

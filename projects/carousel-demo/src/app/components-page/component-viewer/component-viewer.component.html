@@ -3,7 +3,10 @@
        class="component-viewer-wrapper"
        [ngStyle.lt-sm]="{ padding: '20px 15px' }" >
     <nav *ngIf="paramName$ | async as paramName"
-         mat-tab-nav-bar>
+         mat-tab-nav-bar
+         mat-stretch-tabs="false"
+         mat-align-tabs="start"
+         [tabPanel]="tabPanel">
       <a *ngFor="let link of links"
          matTabLink
          routerLinkActive
@@ -14,9 +17,9 @@
       </a>
     </nav>
 
-    <div class="component-viewer-content">
+    <mat-tab-nav-panel #tabPanel class="component-viewer-content">
       <router-outlet></router-outlet>
-    </div>
+    </mat-tab-nav-panel>
   </div>
 
   <ng-template #noData>
