@@ -3,6 +3,9 @@ import { CAROUSEL_CONFIG, CarouselBehavior, CarouselConfig } from '../carousel.m
 import { CarouselCore } from '../core/carousel-core';
 
 @Component({
+  host: {
+    '[style.height.px]': 'itemCrossSize'
+  },
   exportAs: 'carousel',
   selector: 'carousel',
   templateUrl: 'carousel.html',
