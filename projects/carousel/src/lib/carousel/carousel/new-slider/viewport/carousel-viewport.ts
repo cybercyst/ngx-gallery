@@ -2,6 +2,7 @@ import {
   Component,
   Input,
   ContentChildren,
+  AfterViewChecked,
   ElementRef,
   QueryList,
   ChangeDetectionStrategy
@@ -25,7 +26,7 @@ import { BezierEasingOptions, SmoothScrollManager, SmoothScrollToOptions } from 
   styleUrls: ['./carousel-viewport.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CarouselViewport {
+export class CarouselViewport implements AfterViewChecked {
 
   _isPanning: boolean;
 
@@ -72,7 +73,7 @@ export class CarouselViewport {
     if (el) {
       this.el.classList.add('g-scrolling');
       const pos: SmoothScrollToOptions = this.adapter.getScrollToValue(el, behavior || 'smooth', this.duration, this.easing);
-      const index: number = +el.getAttribute('galleryIndex');
+      // const index: number = +el.getAttribute('galleryIndex');
 
       this.smoothScroll.scrollTo(this.el, pos).then(() => {
         // Reset viewport properties on scroll end
