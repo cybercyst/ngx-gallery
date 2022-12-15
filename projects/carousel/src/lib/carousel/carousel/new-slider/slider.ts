@@ -2,17 +2,23 @@ import {
   Component,
   Input,
   Output,
-  EventEmitter,
-  OnChanges,
-  SimpleChanges,
+  Inject,
   ViewChild,
-  ElementRef,
+  ViewChildren,
+  EventEmitter,
   NgZone,
-  ChangeDetectionStrategy, Inject
+  ElementRef,
+  SimpleChanges,
+  QueryList,
+  OnInit,
+  OnChanges,
+  AfterViewInit,
+  OnDestroy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT } from '@angular/common';
-import { distinctUntilChanged, fromEvent, mergeMap, Observable, Subject, Subscriber } from 'rxjs';
+import { distinctUntilChanged, fromEvent, mergeMap, Observable, startWith, Subject, Subscriber } from 'rxjs';
 import { debounceTime, filter, takeUntil, tap } from 'rxjs/operators';
 import {
   CAROUSEL_MODE,
@@ -23,6 +29,7 @@ import {
 } from '../../carousel.model';
 import { HorizontalSliderAdapter, SliderAdapter, VerticalSliderAdapter } from './slider.adapter';
 import { CarouselViewport } from './viewport/carousel-viewport';
+import { ItemComponent } from './item/item.component';
 
 let sliderId: number = 0;
 
@@ -35,7 +42,7 @@ let sliderId: number = 0;
   styleUrls: ['./slider.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NewSlider implements OnChanges {
+export class NewSlider implements AfterViewInit, OnInit, OnChanges, OnDestroy {
 
   sliderId: number = sliderId++;
 
@@ -69,12 +76,16 @@ export class NewSlider implements OnChanges {
    */
   @ViewChild(CarouselViewport, { static: true }) viewport: CarouselViewport;
 
+  @ViewChildren(ItemComponent) items = new QueryList<ItemComponent>();
+
   /** HammerJS instance */
   protected _hammer: any;
 
   private Hammer: any;
 
-
+  /**
+   * Observer carousel pages to track the visible pages
+   */
   private intersectionObserver: IntersectionObserver;
 
   private visibleElements: Map<Element, IntersectionObserverEntry> = new Map<Element, IntersectionObserverEntry>();
@@ -160,13 +171,34 @@ export class NewSlider implements OnChanges {
     });
   }
 
+  ngAfterViewInit(): void {
+    /**
+     * Observer carousel pages to update visible pages
+     */
+    this.items.notifyOnChanges();
+    this.items.changes.pipe(
+      startWith(null),
+      tap(() => {
+        // Disconnect all and reconnect later
+        this.visibleElements.forEach((item: IntersectionObserverEntry) => {
+          this.intersectionObserver.unobserve(item.target);
+        });
+
+        // Connect with the new items
+        this.items.toArray().map((item: ItemComponent) => {
+          this.intersectionObserver.observe(item.element);
+        });
+      }),
+      takeUntil(this.destroyed$)
+    ).subscribe();
+  }
+
   ngOnDestroy(): void {
     this.destroyed$.next();
     this.destroyed$.complete();
   }
 
   onHostResize(entry: any): void {
-    console.log('host resize');
     const width: number = Math.ceil(entry.contentRect.width);
     const height: number = Math.ceil(entry.contentRect.height);
     this.viewport.el.style.width = `${ width }px`;
@@ -303,11 +335,11 @@ export class NewSlider implements OnChanges {
     }
   }
 
-  private createIntersectionObserver(slider: HTMLElement): Observable<IntersectionObserverEntry> {
+  private createIntersectionObserver(element: Element): Observable<IntersectionObserverEntry> {
     return new Observable((observer: Subscriber<IntersectionObserverEntry[]>) => {
       this.intersectionObserver = new IntersectionObserver(
         (entries: IntersectionObserverEntry[]) => observer.next(entries),
-        { root: slider }
+        { root: element }
       );
       return () => this.intersectionObserver.disconnect();
     }).pipe(
@@ -322,9 +354,5 @@ export class NewSlider implements OnChanges {
 
   private setPageCrossSize(value: number | string | 'auto'): void {
     this.viewport.el.style.setProperty('--page-cross-size', this.adapter.getItemSize(value, true));
-  }
-
-  private setPerPage() {
-
   }
 }
