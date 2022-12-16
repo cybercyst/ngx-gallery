@@ -255,6 +255,7 @@ export class NewSlider implements AfterViewInit, OnInit, OnChanges, OnDestroy {
 
     // Set _panOffset for sliding on pan start event
     this._hammer.on('panstart', () => {
+      this._isPanning = true;
       // Stop any ongoing smooth scroll
       this.viewport.dismissOngoingScroll();
       // panOffset = this.adapter.scrollValue;
@@ -266,6 +267,7 @@ export class NewSlider implements AfterViewInit, OnInit, OnChanges, OnDestroy {
     });
 
     this._hammer.on('panend', (e: any) => {
+      this._isPanning = true;
       this.viewport.el.classList.remove('g-sliding');
       if (this.mode === CAROUSEL_MODE.Strict) {
         this.onPanEnd(e);

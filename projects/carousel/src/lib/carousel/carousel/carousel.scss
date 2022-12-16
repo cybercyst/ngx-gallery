@@ -1,5 +1,6 @@
 :host {
   color: var(--carousel-color, #fff);
+  background: var(--carousel-background, transparent);
   border-radius: var(--carousel-border-radius, 0);
 
   position: relative;

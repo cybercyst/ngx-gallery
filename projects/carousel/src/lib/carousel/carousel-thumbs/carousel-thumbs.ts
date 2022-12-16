@@ -36,7 +36,7 @@ export class CarouselThumbs {
   @Input() perPage: number = 1;
 
   /**
-   * Whether or not it overlays the carousel
+   * Regardless or not it overlays the carousel
    */
   @Input() compact: boolean = false;
 
@@ -71,10 +71,6 @@ export class CarouselThumbs {
   @Output() itemClick = new EventEmitter();
 
   constructor(@Optional() public host: Carousel, breakpointObserver: BreakpointObserver) {
-    // const layoutChanges = breakpointObserver.observe([]);
-
-    // layoutChanges.subscribe(result => {
-    // });
   }
 
   onItemClick(index: number) {

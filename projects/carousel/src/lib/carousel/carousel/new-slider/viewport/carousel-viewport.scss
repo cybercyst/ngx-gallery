@@ -1,6 +1,12 @@
 :host {
   flex: 1;
   display: flex;
+  position: relative;
+  will-change: scroll-position;
+  contain: strict;
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+
   scrollbar-width: none; /* Firefox 64 */
   -ms-overflow-style: none; /* Internet Explorer 11 */
   &::-webkit-scrollbar { /** WebKit */
