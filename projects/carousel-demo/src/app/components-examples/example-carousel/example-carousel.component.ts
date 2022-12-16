@@ -11,7 +11,7 @@ export class ExampleCarouselComponent implements OnInit {
 
   itemSize: string = '';
 
-  perPage: number = 3;
+  perPage: number = 1;
 
   selectedPage = 0;
   selectedItem = 0;

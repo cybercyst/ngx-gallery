@@ -11,7 +11,7 @@ import { transition, trigger, useAnimation } from '@angular/animations';
 
 @Component({
   host: {
-    'class': 'page'
+    class: 'page'
   },
   animations: [
     trigger('fade', [
@@ -29,7 +29,10 @@ export class HomeComponent implements OnInit {
   form = new UntypedFormControl('', [Validators.required, Validators.email]);
 
   readonly camel$: Observable<GalleryItem[]>;
-  readonly media$: Observable<any>;
+  readonly media$: Observable<{
+    thumbWidth: number,
+    thumbHeight: number
+  }>;
 
   constructor(pixabay: Pixabay, mediaObserver: MediaObserver, private _title: Title) {
     this.camel$ = pixabay.getHDImages('nature', 38);
