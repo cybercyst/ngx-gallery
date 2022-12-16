@@ -53,7 +53,7 @@
 <footer></footer>
 
 <ng-template lightbox #lightbox1="lightbox" [fullscreen]="false">
-  <carousel #carousel="carousel" [selectedItem]="lightbox1.selected" [gestures]="false">
+  <carousel #carousel="carousel" [selectedItem]="lightbox1.selected">
     <ng-container *ngFor="let item of camel$ | async; index as i">
       <ng-template carouselItem #carouselItem="carouselItem">
         <gallery-image [src]="item.data.src"></gallery-image>
@@ -65,12 +65,10 @@
         </gallery-item-text>
       </ng-template>
       <ng-template carouselItemThumb>
-        <button mat-button style="padding: 0; width: 100%; height: 100%">
-          <gallery-image [src]="item.data.thumb" style="position: absolute; top: 0;bottom: 0"></gallery-image>
-        </button>
+        <gallery-image matRipple style="width: 100%;height: 100%" [src]="item.data.thumb"></gallery-image>
       </ng-template>
     </ng-container>
     <carousel-nav></carousel-nav>
-    <carousel-thumbs [itemHeight]="100" [perPage]="8" position="top"></carousel-thumbs>
+    <carousel-thumbs [itemHeight]="100" [itemWidth]="200" position="top"></carousel-thumbs>
   </carousel>
 </ng-template>
