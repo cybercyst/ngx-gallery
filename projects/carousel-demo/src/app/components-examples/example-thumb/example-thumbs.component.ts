@@ -15,7 +15,7 @@ export class ExampleThumbsComponent implements OnInit {
   mode: 'default' | 'center-method' = 'center-method';
   position: 'left' | 'right' | 'top' | 'bottom' = 'top';
   centralised: boolean = true;
-  compact: boolean = true;
+  compact: boolean = false;
   clickBehavior: CarouselBehavior = 'smooth';
 
   items: { color: string }[];

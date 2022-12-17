@@ -15,7 +15,7 @@ export class ExampleDotsComponent implements OnInit {
 
   position: 'left' | 'right' | 'top' | 'bottom' = 'top';
   centralised: boolean = true;
-  compact: boolean = true;
+  compact: boolean = false;
   clickBehavior: CarouselBehavior = 'smooth';
 
   items: { color: string }[];
