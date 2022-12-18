@@ -32,8 +32,8 @@
 
   <carousel style="height: 300px" [selectedItem]="5">
     <carousel-thumbs [compact]="compact"
-                     [itemWidth]="120"
-                     [itemHeight]="50"
+                     [itemSize]="120"
+                     [itemCrossSize]="50"
                      [clickBehavior]="clickBehavior"
                      [position]="position"
                      [centralized]="centralised"
@@ -68,7 +68,7 @@
 <!--        </div>-->
 <!--      </ng-template>-->
 <!--    </ng-container>-->
-<!--    <carousel-thumbs *ngIf="toggle" [centralised]="false" [itemHeight]="50" mode="center-method"></carousel-thumbs>-->
+<!--    <carousel-thumbs *ngIf="toggle" [centralised]="false" [itemCrossSize]="50" mode="center-method"></carousel-thumbs>-->
 <!--    <carousel-nav></carousel-nav>-->
 <!--  </carousel>-->
 </div>
@@ -88,7 +88,7 @@
 <!--      </div>-->
 <!--    </ng-template>-->
 <!--  </ng-container>-->
-<!--  <carousel-thumbs *ngIf="toggle" [itemHeight]="50"></carousel-thumbs>-->
+<!--  <carousel-thumbs *ngIf="toggle" [itemCrossSize]="50"></carousel-thumbs>-->
 <!--  <carousel-nav></carousel-nav>-->
 <!--</carousel>-->
 
@@ -107,6 +107,6 @@
 <!--      </div>-->
 <!--    </ng-template>-->
 <!--  </ng-container>-->
-<!--  <carousel-thumbs *ngIf="toggle" position="left" [itemWidth]="50"></carousel-thumbs>-->
+<!--  <carousel-thumbs *ngIf="toggle" position="left" [itemSize]="50"></carousel-thumbs>-->
 <!--  <carousel-nav></carousel-nav>-->
 <!--</carousel>-->
