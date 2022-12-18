@@ -81,10 +81,10 @@ export class CarouselCore implements AfterContentInit, OnChanges, OnDestroy {
   @Input() sensorThrottleTime: number = this.config.sensorThrottleTime;
   @Input() orientation: CarouselOrientation = this.config.orientation;
 
-  @Output() itemClick = new EventEmitter<number>();
-  @Output() itemChanged = this.carouselRef.activeItemChanged;
-  @Output() pageChanged = this.carouselRef.activePageChanged;
-  @Output() afterPageChanged = new EventEmitter<CarouselState>();
+  @Output() itemClick: EventEmitter<number> = new EventEmitter<number>();
+  @Output() itemChanged: Observable<CarouselState> = this.carouselRef.activeItemChanged;
+  @Output() pageChanged: Observable<CarouselState> = this.carouselRef.activePageChanged;
+  @Output() afterPageChanged: Observable<CarouselState> = new EventEmitter<CarouselState>();
 
   /** Carousel items reference */
   @ContentChildren(CarouselItemDirective, { emitDistinctChangesOnly: true }) contentItems: QueryList<CarouselItem>;
@@ -92,7 +92,7 @@ export class CarouselCore implements AfterContentInit, OnChanges, OnDestroy {
 
   readonly thumbs$ = new Subject();
 
-  constructor(@Optional() @Inject(CAROUSEL_CONFIG) protected customConfig: CarouselConfig, public elementRef: ElementRef) {
+  constructor(@Optional() @Inject(CAROUSEL_CONFIG) protected customConfig: CarouselConfig, public elementRef: ElementRef<HTMLElement>) {
   }
 
   ngAfterContentInit() {

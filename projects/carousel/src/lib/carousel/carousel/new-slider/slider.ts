@@ -94,7 +94,7 @@ export class NewSlider implements AfterViewInit, OnInit, OnChanges, OnDestroy {
 
   private readonly destroyed$ = new Subject<void>();
 
-  constructor(protected _el: ElementRef,
+  constructor(protected _el: ElementRef<HTMLElement>,
               protected _zone: NgZone,
               private _platform: Platform,
               @Inject(DOCUMENT) private doc: Document) {
@@ -198,9 +198,9 @@ export class NewSlider implements AfterViewInit, OnInit, OnChanges, OnDestroy {
     this.destroyed$.complete();
   }
 
-  onHostResize(entry: any): void {
-    const width: number = Math.ceil(entry.contentRect.width);
-    const height: number = Math.ceil(entry.contentRect.height);
+  onHostResize(): void {
+    const width: number = Math.ceil(this._el.nativeElement.clientWidth);
+    const height: number = Math.ceil(this._el.nativeElement.clientHeight);
     this.viewport.el.style.width = `${ width }px`;
     this.viewport.el.style.height = `${ height }px`;
     this.viewport.scrollToIndex(this.state.activeItem, 'auto');

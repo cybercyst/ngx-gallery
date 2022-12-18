@@ -2,7 +2,7 @@
                    [orientation]="orientation"
                    [adapter]="adapter"
                    [centralized]="centralized"
-                   (resizeSensor)="onHostResize($event[0])"
+                   (resizeSensor)="onHostResize()"
                    [sensorThrottleTime]="sensorThrottleTime"
                    [sensorDisabled]="sensorDisabled">
   <carousel-page *ngFor="let page of state?.pages"

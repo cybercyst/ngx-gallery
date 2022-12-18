@@ -79,7 +79,7 @@ export class GalleryThumbsComponent implements AfterViewInit, AfterViewChecked, 
   @Output() error = new EventEmitter<GalleryError>();
 
   /** Slider ElementRef */
-  @ViewChild('slider', { static: true }) sliderEl: ElementRef;
+  @ViewChild('slider', { static: true }) private sliderEl: ElementRef<HTMLElement>;
 
   @ViewChildren(GalleryThumbComponent, { read: ElementRef }) items = new QueryList<ElementRef<HTMLElement>>();
 
@@ -87,7 +87,7 @@ export class GalleryThumbsComponent implements AfterViewInit, AfterViewChecked, 
     return this.sliderEl.nativeElement;
   }
 
-  constructor(private _el: ElementRef,
+  constructor(private _el: ElementRef<HTMLElement>,
               private _zone: NgZone,
               private _smoothScroll: SmoothScrollManager,
               private _cd: ChangeDetectorRef,

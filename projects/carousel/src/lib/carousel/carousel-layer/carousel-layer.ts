@@ -1,14 +1,34 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Directive, Input, OnChanges, Optional, SimpleChanges } from '@angular/core';
+import { Carousel } from '../carousel/carousel';
 
-@Component({
+@Directive({
   host: {
-    '[attr.position]': 'position'
+    '[class.carousel-layer]': 'true',
+    '[attr.compact]': 'compact',
+    '[attr.position]': 'position',
+    '[style.gridArea]': 'position'
   },
-  selector: 'carousel-layer, [carouselLayer]',
-  template: '<ng-content></ng-content>',
-  styleUrls: ['./carousel-layer.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'carousel-layer, [carouselLayer]'
 })
-export class CarouselLayer {
-  @Input() position: 'left' | 'right' | 'top' | 'bottom';
+export class CarouselLayer implements OnChanges {
+
+  /**
+   * The position of the dots in the carousel
+   */
+  @Input() position: 'left' | 'right' | 'top' | 'bottom' = 'top';
+
+
+  /**
+   * Should overlay the carousel
+   */
+  @Input() compact: boolean = false;
+
+  constructor(@Optional() public host: Carousel) {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.position && !changes.position.firstChange && changes.position.currentValue !== changes.position.previousValue) {
+      this.host?.updateLayout();
+    }
+  }
 }

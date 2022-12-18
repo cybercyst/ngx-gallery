@@ -40,18 +40,16 @@ export class GalleryVideoComponent implements OnInit {
 
   @Input('pause') set pauseVideo(shouldPause: boolean) {
     if (this.video.nativeElement) {
-      const video: HTMLVideoElement = this.video.nativeElement;
-      if (shouldPause && !video.paused) {
-        video.pause();
+      if (shouldPause && !this.video.nativeElement.paused) {
+        this.video.nativeElement.pause();
       }
     }
   }
 
   @Input('play') set playVideo(shouldPlay: boolean) {
     if (this.video.nativeElement) {
-      const video: HTMLVideoElement = this.video.nativeElement;
       if (shouldPlay) {
-        video.play();
+        this.video.nativeElement.play();
       }
     }
   }
@@ -59,7 +57,7 @@ export class GalleryVideoComponent implements OnInit {
   /** Stream that emits when an error occurs */
   @Output() error = new EventEmitter<ErrorEvent>();
 
-  @ViewChild('video', { static: true }) video: ElementRef;
+  @ViewChild('video', { static: true }) video: ElementRef<HTMLVideoElement>;
 
   ngOnInit() {
     if (this.src instanceof Array) {

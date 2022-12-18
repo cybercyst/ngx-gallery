@@ -2,8 +2,8 @@
           [selectedItem]="state.activeItem"
           [orientation]="thumbOrientation"
           [selectedBehaviour]="state.behavior"
-          [itemSize]="itemWidth"
-          [itemCrossSize]="itemHeight"
+          [itemSize]="itemSize"
+          [itemCrossSize]="itemCrossSize"
           [centralized]="centralised"
           (itemClick)="onItemClick($event)">
   <ng-container *ngFor="let page of state.pages; index as i">

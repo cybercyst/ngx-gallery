@@ -1,21 +1,21 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Optional, Output } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Carousel } from '../carousel/carousel';
 import { CAROUSEL_ORIENTATION, CarouselBehavior, CarouselOrientation } from '../carousel.model';
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { ThumbnailsPosition } from '../../gallery.model';
+import { CarouselLayer } from '../carousel-layer/carousel-layer';
 
 @Component({
   host: {
-    '[attr.compact]': 'compact',
-    '[attr.position]': 'position',
-    '[style.gridArea]': 'position'
+    '[class.carousel-thumbs]': 'true',
   },
   selector: 'carousel-thumbs',
   templateUrl: './carousel-thumb.html',
   styleUrls: ['./carousel-thumb.scss'],
+  providers: [{ provide: CarouselLayer, useExisting: CarouselThumbs }],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CarouselThumbs {
+export class CarouselThumbs extends CarouselLayer {
 
   get thumbOrientation(): CarouselOrientation {
     return this.position === ThumbnailsPosition.Top || this.position === ThumbnailsPosition.Bottom
@@ -36,11 +36,6 @@ export class CarouselThumbs {
   @Input() perPage: number = 1;
 
   /**
-   * Regardless or not it overlays the carousel
-   */
-  @Input() compact: boolean = false;
-
-  /**
    * The maximum number of items to be shown in the slider
    */
   @Input() maxShownItems: number = 9;
@@ -48,12 +43,12 @@ export class CarouselThumbs {
   /**
    * Sets the width of the item
    */
-  @Input() itemWidth: number = 100;
+  @Input() itemSize: number = 100;
 
   /**
    * Sets the height of the item
    */
-  @Input() itemHeight: number = 60;
+  @Input() itemCrossSize: number = 60;
 
   /**
    * The navigation behavior between items by item click
@@ -71,6 +66,7 @@ export class CarouselThumbs {
   @Output() itemClick = new EventEmitter();
 
   constructor(@Optional() public host: Carousel, breakpointObserver: BreakpointObserver) {
+    super(host);
   }
 
   onItemClick(index: number) {

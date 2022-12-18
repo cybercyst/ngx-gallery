@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
 import { CarouselPage } from 'ng-gallery/next';
-import { coerceCssPixelValue } from '@angular/cdk/coercion';
 
 @Component({
   host: {
@@ -33,6 +32,6 @@ export class ItemComponent {
     return this.el.nativeElement;
   }
 
-  constructor(private el: ElementRef) {
+  constructor(private el: ElementRef<HTMLElement>) {
   }
 }

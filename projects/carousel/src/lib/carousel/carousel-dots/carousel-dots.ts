@@ -2,24 +2,25 @@ import { Component, Input, Output, EventEmitter, Optional, ChangeDetectionStrate
 import { Carousel } from '../carousel/carousel';
 import { CAROUSEL_ORIENTATION, CarouselBehavior, CarouselOrientation } from '../carousel.model';
 import { ThumbnailsPosition } from '../../gallery.model';
+import { CarouselLayer } from '../carousel-layer/carousel-layer';
 
 @Component({
   host: {
-    '[attr.compact]': 'compact',
-    '[attr.position]': 'position',
-    '[style.gridArea]': 'position'
+    '[class.carousel-dots]': 'true'
   },
   selector: 'carousel-dots',
   templateUrl: './carousel-dots.html',
   styleUrls: ['./carousel-dots.scss'],
+  providers: [{ provide: CarouselLayer, useExisting: CarouselDots }],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CarouselDots {
+export class CarouselDots extends CarouselLayer {
 
   get thumbOrientation(): CarouselOrientation {
     return this.position === ThumbnailsPosition.Top || this.position === ThumbnailsPosition.Bottom
       ? CAROUSEL_ORIENTATION.Horizontal : CAROUSEL_ORIENTATION.Vertical;
   }
+
   /**
    * Whether to show the number on the items
    */
@@ -31,11 +32,6 @@ export class CarouselDots {
   @Input() centralised: boolean = false;
 
   /**
-   * Whether or not it overlays the carousel
-   */
-  @Input() compact: boolean = false;
-
-  /**
    * The maximum number of items to be shown in the slider
    */
   @Input() maxShownItems: number = 9;
@@ -43,12 +39,12 @@ export class CarouselDots {
   /**
    * Sets the width of the item
    */
-  @Input() itemWidth: number = 30;
+  @Input() itemSize: number = 30;
 
   /**
    * Sets the height of the item
    */
-  @Input() itemHeight: number = 30;
+  @Input() itemCrossSize: number = 30;
 
   /**
    * The navigation behavior between items by item click
@@ -58,7 +54,7 @@ export class CarouselDots {
   /**
    * The position of the dots in the carousel
    */
-  @Input() position: 'left' | 'right' | 'top' | 'bottom' = 'top';
+  @Input() position: 'top' | 'bottom' = 'top';
 
   /**
    * A stream that emits when an item is clicked
@@ -66,6 +62,7 @@ export class CarouselDots {
   @Output() itemClick = new EventEmitter();
 
   constructor(@Optional() public host: Carousel) {
+    super(host);
   }
 
   onItemClick(index: number) {

@@ -8,15 +8,22 @@
   height: 100%;
   box-sizing: border-box;
   overflow: hidden;
-  //height: 250px;
 
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  grid-template-areas:
-    ". top ."
-    "left center right"
-    ". bottom .";
+  gap: 1px;
+
+  /**
+   * The following properties will be overridden in component code
+   */
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows:minmax(0, 1fr);
+  grid-template-areas: "center";
+  //grid-template-areas:
+  //  ". top ."
+  //  "left center right"
+  //  ". bottom .";
+  //grid-template-columns: auto minmax(0, 1fr) auto;
+  //grid-template-rows: auto minmax(0, 1fr) auto;
 
   ::ng-deep {
     * {
@@ -30,11 +37,6 @@
 
     .carousel, .carousel-slider {
       display: flex;
-    }
-
-    .carousel-slider {
-      position: relative;
-      flex: 1;
     }
   }
 }

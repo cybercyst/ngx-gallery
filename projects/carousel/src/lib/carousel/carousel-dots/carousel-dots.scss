@@ -1,34 +1,4 @@
 :host {
-  &[compact="true"] {
-    horizontal-centralised-carousel, vertical-centralised-carousel {
-      position: absolute;
-    }
-
-    &[position="top"] {
-      horizontal-centralised-carousel {
-        top: 0;
-      }
-    }
-
-    &[position="bottom"] {
-      horizontal-centralised-carousel {
-        bottom: 0;
-      }
-    }
-
-    &[position="left"] {
-      vertical-centralised-carousel {
-        left: 0;
-      }
-    }
-
-    &[position="right"] {
-      vertical-centralised-carousel {
-        right: 0;
-      }
-    }
-  }
-
   ::ng-deep {
 
     .slider-centralizer-container {

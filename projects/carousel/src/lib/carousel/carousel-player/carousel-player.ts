@@ -14,11 +14,13 @@ import { NumberInput, BooleanInput, coerceNumberProperty, coerceBooleanProperty 
 import { animate, AnimationBuilder, AnimationFactory, AnimationPlayer, style } from '@angular/animations';
 import { Subject, Observable, merge, fromEvent, tap, filter, map, takeUntil, switchMap, startWith, EMPTY } from 'rxjs';
 import { Carousel } from '../carousel/carousel';
+import { CarouselLayer } from '../carousel-layer/carousel-layer';
 
 @Component({
   selector: 'carousel-player',
   templateUrl: './carousel-player.html',
   styleUrls: ['./carousel-player.scss'],
+  providers: [{ provide: CarouselLayer, useExisting: CarouselPlayer }],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CarouselPlayer implements AfterViewInit, OnChanges, OnDestroy {
@@ -87,7 +89,7 @@ export class CarouselPlayer implements AfterViewInit, OnChanges, OnDestroy {
 
   @Input() pauseOn: 'hover' | 'click' | 'none' = 'hover';
 
-  @ViewChild('progressBar', { static: true }) progressEl: ElementRef;
+  @ViewChild('progressBar', { static: true }) progressEl: ElementRef<HTMLElement>;
 
   constructor(@Optional() private carousel: Carousel, private builder: AnimationBuilder) {
   }

@@ -39,8 +39,7 @@ export class GalleryIframeComponent {
   @Input('pause') set pauseVideo(shouldPause: boolean) {
     if (this.iframe?.nativeElement) {
       if (shouldPause) {
-        const iframe: HTMLIFrameElement = this.iframe.nativeElement;
-        iframe.src = null;
+        this.iframe.nativeElement.src = null;
 
         if (!this.autoplay && this.videoSrc) {
           this.iframeSrc = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoSrc);
