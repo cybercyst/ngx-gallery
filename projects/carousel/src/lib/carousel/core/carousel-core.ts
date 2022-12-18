@@ -84,7 +84,7 @@ export class CarouselCore implements AfterContentInit, OnChanges, OnDestroy {
   @Output() itemClick: EventEmitter<number> = new EventEmitter<number>();
   @Output() itemChanged: Observable<CarouselState> = this.carouselRef.activeItemChanged;
   @Output() pageChanged: Observable<CarouselState> = this.carouselRef.activePageChanged;
-  @Output() afterPageChanged: Observable<CarouselState> = new EventEmitter<CarouselState>();
+  @Output() afterPageChanged: EventEmitter<CarouselState> = new EventEmitter<CarouselState>();
 
   /** Carousel items reference */
   @ContentChildren(CarouselItemDirective, { emitDistinctChangesOnly: true }) contentItems: QueryList<CarouselItem>;
