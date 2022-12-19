@@ -20,7 +20,7 @@ export enum CAROUSEL_POSITION {
   Bottom = 'bottom'
 }
 
-export const CAROUSEL_CONFIG = new InjectionToken<CarouselConfig>('CAROUSEL_CONFIG');
+export const CAROUSEL_DEFAULT_OPTIONS = new InjectionToken<CarouselConfig>('CAROUSEL_DEFAULT_OPTIONS');
 
 export enum CAROUSEL_ORIENTATION {
   Horizontal = 'horizontal',

@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 
 import { Carousel } from './carousel';
-import { CAROUSEL_CONFIG, CAROUSEL_MODE, CAROUSEL_ORIENTATION, CarouselConfig } from '../carousel.model';
+import { CAROUSEL_DEFAULT_OPTIONS, CAROUSEL_MODE, CAROUSEL_ORIENTATION, CarouselConfig } from '../carousel.model';
 import { CarouselModule } from '../carousel.module';
 import { CarouselItemDirective } from '../../directives/carousel-item';
 
@@ -57,7 +57,7 @@ describe('CarouselComponent', () => {
       imports: [CarouselModule],
       declarations: [TestCarouselComponent],
       providers: [
-        { provide: CAROUSEL_CONFIG, useValue: customConfig }
+        { provide: CAROUSEL_DEFAULT_OPTIONS, useValue: customConfig }
       ]
     })
       .compileComponents();

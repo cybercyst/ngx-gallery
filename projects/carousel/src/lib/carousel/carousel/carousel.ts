@@ -9,7 +9,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { startWith, takeUntil, tap } from 'rxjs/operators';
-import { CAROUSEL_CONFIG, CarouselConfig, CarouselOrientation } from '../carousel.model';
+import { CAROUSEL_DEFAULT_OPTIONS, CarouselConfig, CarouselOrientation } from '../carousel.model';
 import { CarouselCore } from './carousel-core';
 import { CarouselLayer } from '../carousel-layer/carousel-layer';
 
@@ -38,7 +38,7 @@ export class Carousel extends CarouselCore {
 
   @ContentChildren(CarouselLayer) layers: QueryList<CarouselLayer>;
 
-  constructor(@Optional() @Inject(CAROUSEL_CONFIG) protected customConfig: CarouselConfig, el: ElementRef<HTMLElement>) {
+  constructor(@Optional() @Inject(CAROUSEL_DEFAULT_OPTIONS) protected customConfig: CarouselConfig, el: ElementRef<HTMLElement>) {
     super(customConfig, el);
   }
 

@@ -16,7 +16,7 @@ import { Subject, Observable } from 'rxjs';
 import { CarouselRef } from '../carousel-ref/carousel-ref';
 import { CarouselItemDirective, CarouselItemThumbDirective } from '../../directives/carousel-item';
 import {
-  CAROUSEL_CONFIG,
+  CAROUSEL_DEFAULT_OPTIONS,
   CAROUSEL_MODE,
   CAROUSEL_ORIENTATION,
   CarouselBehavior,
@@ -93,7 +93,7 @@ export abstract class CarouselCore implements AfterContentInit, OnChanges, OnDes
   @ContentChildren(CarouselItemDirective, { emitDistinctChangesOnly: true }) contentItems: QueryList<CarouselItem>;
   @ContentChildren(CarouselItemThumbDirective, { emitDistinctChangesOnly: true }) contentThumbItems: QueryList<CarouselItem>;
 
-  constructor(@Optional() @Inject(CAROUSEL_CONFIG) protected customConfig: CarouselConfig, public elementRef: ElementRef<HTMLElement>) {
+  constructor(@Optional() @Inject(CAROUSEL_DEFAULT_OPTIONS) protected customConfig: CarouselConfig, public elementRef: ElementRef<HTMLElement>) {
   }
 
   ngAfterContentInit(): void {

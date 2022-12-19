@@ -12,7 +12,7 @@ import {
 import { takeUntil } from 'rxjs/operators';
 import { Carousel } from '../carousel/carousel';
 import {
-  CAROUSEL_CONFIG,
+  CAROUSEL_DEFAULT_OPTIONS,
   CAROUSEL_ORIENTATION,
   CarouselBehavior,
   CarouselConfig,
@@ -84,7 +84,7 @@ export class CarouselThumbs extends CarouselCore {
   @Output() itemClick = new EventEmitter();
 
   constructor(@SkipSelf() public parent: Carousel,
-              @Optional() @Inject(CAROUSEL_CONFIG) protected customConfig: CarouselConfig,
+              @Optional() @Inject(CAROUSEL_DEFAULT_OPTIONS) protected customConfig: CarouselConfig,
               public elementRef: ElementRef<HTMLElement>) {
     super(customConfig, elementRef);
     this.parent.state.pipe(takeUntil(this.destroyed$)).subscribe((state: CarouselState) => {
