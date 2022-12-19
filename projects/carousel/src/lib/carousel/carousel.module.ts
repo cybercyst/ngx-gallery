@@ -13,20 +13,13 @@ import {
   CarouselNavPrevButton
 } from './carousel-nav/carousel-nav';
 import { CarouselNavButton } from './carousel-nav/carousel-nav-button';
-import { CarouselDots } from './carousel-dots/carousel-dots';
 import { CarouselThumbs } from './carousel-thumbs/carousel-thumbs';
-import { CarouselCore } from './core/carousel-core';
-import { TapClick } from '../directives/tap-click';
-import { CentralisedSlider } from './centralised-carousel/centralised-slider/centralised-slider';
-import { VerticalCentralisedCarousel } from './centralised-carousel/vertical-centralised-carousel';
-import { HorizontalCentralisedCarousel } from './centralised-carousel/horizontal-centralised-carousel';
-import { Slider } from './carousel/slider/slider';
+import { CentralisedSlider } from './unsed-and-old/centralised-carousel/centralised-slider/centralised-slider';
 import { CarouselPlayer } from './carousel-player/carousel-player';
 import { CarouselCounter } from './carousel-counter/carousel-counter';
-import { CarouselLayer } from './carousel-layer/carousel-layer';
-import { CarouselViewport } from './carousel/new-slider/viewport/carousel-viewport';
-import { NewSlider } from './carousel/new-slider/slider';
-import { ItemComponent } from './carousel/new-slider/item/item.component';
+import { CarouselViewport } from './carousel/slider/viewport/carousel-viewport';
+import { NewSlider } from './carousel/slider/slider';
+import { CarouselPageTemplate } from './carousel/slider/carousel-page-template/carousel-page-template';
 
 @NgModule({
   imports: [
@@ -35,10 +28,8 @@ import { ItemComponent } from './carousel/new-slider/item/item.component';
     ScrollingModule
   ],
   declarations: [
-    CarouselCore,
     Carousel,
     ResizeSensor,
-    TapClick,
     CarouselNav,
     CarouselItemThumbDirective,
     CarouselNavButton,
@@ -47,22 +38,16 @@ import { ItemComponent } from './carousel/new-slider/item/item.component';
     CarouselNavPrev,
     CarouselNavPrevButton,
     CarouselItemDirective,
-    CarouselDots,
     CarouselThumbs,
     CentralisedSlider,
-    VerticalCentralisedCarousel,
-    HorizontalCentralisedCarousel,
-    Slider,
     NewSlider,
     CarouselPlayer,
     CarouselCounter,
-    CarouselLayer,
     CarouselViewport,
-    ItemComponent
+    CarouselPageTemplate
   ],
   exports: [
     Carousel,
-    TapClick,
     CarouselItemThumbDirective,
     CarouselNav,
     CarouselNavButton,
@@ -71,14 +56,10 @@ import { ItemComponent } from './carousel/new-slider/item/item.component';
     CarouselNavPrev,
     CarouselNavPrevButton,
     CarouselItemDirective,
-    CarouselDots,
     CarouselThumbs,
     CentralisedSlider,
-    VerticalCentralisedCarousel,
-    HorizontalCentralisedCarousel,
     CarouselPlayer,
     CarouselCounter,
-    CarouselLayer
   ]
 })
 export class CarouselModule {

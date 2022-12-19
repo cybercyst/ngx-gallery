@@ -6,12 +6,12 @@ import {
   ContentChildren,
   ElementRef,
   QueryList,
-  ChangeDetectionStrategy, SimpleChanges
+  ChangeDetectionStrategy
 } from '@angular/core';
-import { CAROUSEL_CONFIG, CarouselBehavior, CarouselConfig } from '../carousel.model';
-import { CarouselCore } from '../core/carousel-core';
+import { startWith, takeUntil, tap } from 'rxjs/operators';
+import { CAROUSEL_CONFIG, CarouselConfig, CarouselOrientation } from '../carousel.model';
+import { CarouselCore } from './carousel-core';
 import { CarouselLayer } from '../carousel-layer/carousel-layer';
-import { takeUntil, tap } from 'rxjs/operators';
 
 interface CarouselLayerArgs {
   left: number;
@@ -22,9 +22,8 @@ interface CarouselLayerArgs {
 
 @Component({
   host: {
-    '[style.width]': 'orientation === CarouselOrientation.Horizontal ? "66vw" : itemCrossSize + "px"',
-    '[style.height]': 'orientation === CarouselOrientation.Horizontal ? itemCrossSize + "px" : "100%"',
-    '[attr.layers]': 'layers?.length'
+    '[style.width]': 'orientation === CarouselOrientation.Horizontal ? "100%" : itemBlockSize + "px"',
+    '[style.height]': 'orientation === CarouselOrientation.Horizontal ? itemBlockSize + "px" : "100%"',
   },
   exportAs: 'carousel',
   selector: 'carousel',
@@ -35,11 +34,7 @@ interface CarouselLayerArgs {
 })
 export class Carousel extends CarouselCore {
 
-  @Input() itemSize: number | string | 'auto';
-
-  @Input() itemCrossSize: string | number | 'auto';
-
-  @Input() centralized: boolean;
+  @Input() orientation: CarouselOrientation = this.config.orientation;
 
   @ContentChildren(CarouselLayer) layers: QueryList<CarouselLayer>;
 
@@ -47,12 +42,15 @@ export class Carousel extends CarouselCore {
     super(customConfig, el);
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes);
-  }
-
   ngAfterContentInit(): void {
     super.ngAfterContentInit();
+    // Query carousel items in content to attach them in the slider
+    this.contentItems.notifyOnChanges();
+    this.contentItems.changes.pipe(
+      tap(() => this.loadItems()),
+      takeUntil(this.destroyed$)
+    ).subscribe();
+
     this.layers.changes.pipe(
       tap(() => this.updateLayout()),
       takeUntil(this.destroyed$)
@@ -94,49 +92,6 @@ export class Carousel extends CarouselCore {
     this.elementRef.nativeElement.style.gridTemplateAreas = areas;
     this.elementRef.nativeElement.style.gridTemplateRows = rows;
     this.elementRef.nativeElement.style.gridTemplateColumns = cols;
-    console.log('updateLayout', areas);
-  }
-
-  /**
-   * Go to page by index
-   */
-  setPage(index: number, behavior?: CarouselBehavior): void {
-    this.carouselRef.setPage({ index, behavior });
-  }
-
-  /**
-   * Go to item by index
-   */
-  setItem(index: number, behavior?: CarouselBehavior): void {
-    this.carouselRef.setItem({ index, behavior });
-  }
-
-  /**
-   * Go to next page
-   */
-  nextPage(behavior?: CarouselBehavior): void {
-    this.carouselRef.nextPage(behavior);
-  }
-
-  /**
-   * Go to prev page
-   */
-  prevPage(behavior?: CarouselBehavior): void {
-    this.carouselRef.prevPage(behavior);
-  }
-
-  /**
-   * Go to next item
-   */
-  nextItem(behavior?: CarouselBehavior): void {
-    this.carouselRef.nextItem(behavior);
-  }
-
-  /**
-   * Go to prev item
-   */
-  prevItem(behavior?: CarouselBehavior): void {
-    this.carouselRef.prevItem(behavior);
   }
 
 }

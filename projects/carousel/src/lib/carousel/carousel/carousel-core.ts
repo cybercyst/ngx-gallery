@@ -5,17 +5,15 @@ import {
   Output,
   Inject,
   Optional,
-  AfterContentInit,
   OnChanges,
   OnDestroy,
   QueryList,
   SimpleChanges,
   ContentChildren,
-  ElementRef
+  ElementRef, AfterContentInit
 } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { startWith, takeUntil, tap } from 'rxjs/operators';
-import { CarouselRef } from './carousel-ref';
+import { CarouselRef } from '../carousel-ref/carousel-ref';
 import { CarouselItemDirective, CarouselItemThumbDirective } from '../../directives/carousel-item';
 import {
   CAROUSEL_CONFIG,
@@ -47,7 +45,7 @@ const config: CarouselConfig = {
 @Directive({
   selector: '[carousel-core]'
 })
-export class CarouselCore implements AfterContentInit, OnChanges, OnDestroy {
+export abstract class CarouselCore implements AfterContentInit, OnChanges, OnDestroy {
   /** Carousel ref */
   carouselRef = new CarouselRef();
 
@@ -59,8 +57,6 @@ export class CarouselCore implements AfterContentInit, OnChanges, OnDestroy {
 
   protected readonly destroyed$ = new Subject<void>();
 
-  // itemSize: number;
-
   get state(): Observable<CarouselState> {
     return this.carouselRef.state$;
   }
@@ -69,17 +65,24 @@ export class CarouselCore implements AfterContentInit, OnChanges, OnDestroy {
     return this.carouselRef.snapshot;
   }
 
+  get items(): CarouselItem[] | undefined {
+    return this.contentItems?.toArray();
+  }
+
+  abstract get orientation(): CarouselOrientation;
+
   @Input() selectedPage: number;
   @Input() selectedItem: number;
   @Input() selectedBehaviour: 'smooth' | 'auto' = 'smooth';
   @Input() perPage: number = this.config.perPage;
   @Input() mode: CarouselMode = this.config.mode;
   @Input() gestures: boolean = this.config.gestures;
-  @Input() cacheSize: number = this.config.cacheSize;
   @Input() panSensitivity: number = this.config.panSensitivity;
   @Input() sensorDisabled: boolean = this.config.sensorDisabled;
   @Input() sensorThrottleTime: number = this.config.sensorThrottleTime;
-  @Input() orientation: CarouselOrientation = this.config.orientation;
+  @Input() itemInlineSize: number | string | 'auto';
+  @Input() itemBlockSize: string | number | 'auto';
+  @Input() centralized: boolean;
 
   @Output() itemClick: EventEmitter<number> = new EventEmitter<number>();
   @Output() itemChanged: Observable<CarouselState> = this.carouselRef.activeItemChanged;
@@ -90,29 +93,14 @@ export class CarouselCore implements AfterContentInit, OnChanges, OnDestroy {
   @ContentChildren(CarouselItemDirective, { emitDistinctChangesOnly: true }) contentItems: QueryList<CarouselItem>;
   @ContentChildren(CarouselItemThumbDirective, { emitDistinctChangesOnly: true }) contentThumbItems: QueryList<CarouselItem>;
 
-  readonly thumbs$ = new Subject();
-
   constructor(@Optional() @Inject(CAROUSEL_CONFIG) protected customConfig: CarouselConfig, public elementRef: ElementRef<HTMLElement>) {
   }
 
-  ngAfterContentInit() {
-    // Query carousel items in content to attach them in the slider
-    this.contentItems.notifyOnChanges();
-    this.contentItems.changes.pipe(
-      startWith({}),
-      tap(() => this.checkCarouselItems()),
-      takeUntil(this.destroyed$)
-    ).subscribe();
-
-    this.contentThumbItems.notifyOnChanges();
-    this.contentThumbItems.changes.pipe(
-      startWith({}),
-      tap(() => this.thumbs$.next(this.contentThumbItems.toArray())),
-      takeUntil(this.destroyed$)
-    ).subscribe();
+  ngAfterContentInit(): void {
+    this.loadItems();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     this.carouselRef.configure({
       perPage: this.perPage
     });
@@ -130,13 +118,13 @@ export class CarouselCore implements AfterContentInit, OnChanges, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.carouselRef.destroy();
     this.destroyed$.next();
     this.destroyed$.complete();
   }
 
-  onSliderAction(page: 'prev' | 'next' | number, behavior: CarouselBehavior) {
+  onSliderAction(page: 'prev' | 'next' | number, behavior: CarouselBehavior): void {
     switch (page) {
       case 'next':
         this.carouselRef.nextPage(behavior, this.perPage === 1);
@@ -149,53 +137,58 @@ export class CarouselCore implements AfterContentInit, OnChanges, OnDestroy {
     }
   }
 
+  onItemClick(index: number): void {
+    this.itemClick.emit(index);
+  }
+
   /**
    * Go to page by index
    */
-  setPage(index: number, behavior?: CarouselBehavior) {
+  setPage(index: number, behavior?: CarouselBehavior): void {
     this.carouselRef.setPage({ index, behavior });
   }
 
   /**
    * Go to item by index
    */
-  setItem(index: number, behavior?: CarouselBehavior) {
+  setItem(index: number, behavior?: CarouselBehavior): void {
     this.carouselRef.setItem({ index, behavior });
   }
 
   /**
    * Go to next page
    */
-  nextPage(behavior?: CarouselBehavior) {
+  nextPage(behavior?: CarouselBehavior): void {
     this.carouselRef.nextPage(behavior);
   }
 
   /**
    * Go to prev page
    */
-  prevPage(behavior?: CarouselBehavior) {
+  prevPage(behavior?: CarouselBehavior): void {
     this.carouselRef.prevPage(behavior);
   }
 
   /**
    * Go to next item
    */
-  nextItem(behavior?: CarouselBehavior) {
+  nextItem(behavior?: CarouselBehavior): void {
     this.carouselRef.nextItem(behavior);
   }
 
   /**
    * Go to prev item
    */
-  prevItem(behavior?: CarouselBehavior) {
+  prevItem(behavior?: CarouselBehavior): void {
     this.carouselRef.prevItem(behavior);
   }
 
   /**
    * Load the content items into the carouselRef and set the selected page
    */
-  protected checkCarouselItems() {
-    this.carouselRef.load(this.contentItems.toArray(), this.selectedItem);
+  protected loadItems(): void {
+    this.carouselRef.load(this.items, this.selectedItem);
   }
 
+  abstract updateLayout(): void;
 }

@@ -1,20 +1,15 @@
-<cdk-virtual-scroll-viewport [orientation]="orientation"
-                             [itemSize]="itemSize"
-                             (scrolledIndexChange)="scrollIndexChange.emit(state)"
-                             (resizeSensor)="viewPort.scrollToIndex(state?.activePage)"
-                             [sensorThrottleTime]="sensorThrottleTime"
-                             [sensorDisabled]="sensorDisabled">
-  <div *cdkVirtualFor="let page of state?.pages"
-       class="carousel-page"
-       [style.width.px]="itemWidth"
-       [style.height.px]="itemHeight"
-       [class.carousel-page-active]="page.index === state.activePage">
-
-    <div *ngFor="let item of page.items"
-         class="carousel-item"
-         [class.carousel-item-active]="item.index === state.activeItem"
-         (tapClick)="itemClick.emit(item.index)">
-      <ng-container [ngTemplateOutlet]="item.template"></ng-container>
-    </div>
-  </div>
-</cdk-virtual-scroll-viewport>
+<carousel-viewport [itemSize]="itemSize"
+                   [orientation]="orientation"
+                   [adapter]="adapter"
+                   [centralized]="centralized"
+                   (resizeSensor)="onHostResize()"
+                   [sensorThrottleTime]="sensorThrottleTime"
+                   [sensorDisabled]="sensorDisabled">
+  <carousel-page *ngFor="let page of state?.pages"
+                 [sliderId]="sliderId"
+                 [page]="page"
+                 [activeItem]="state.activeItem"
+                 [activePage]="state.activePage"
+                 (itemClick)="itemClick.emit($event)">
+  </carousel-page>
+</carousel-viewport>

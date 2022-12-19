@@ -25,7 +25,7 @@ describe('Slider', () => {
 
   it('should create', () => {
     expect(component).toBeDefined();
-    expect(component.viewPort).toBeDefined();
+    expect(component.viewport).toBeDefined();
   });
 
   it('should activate the gestures', () => {
@@ -50,20 +50,20 @@ describe('Slider', () => {
   });
 
   it('should scroll to active page', () => {
-    spyOn(component.viewPort, 'scrollToIndex');
+    spyOn(component.viewport, 'scrollToIndex');
     component.state = { activePage: 5, behavior: 'smooth' };
     component.ngOnChanges({
       state: new SimpleChange({ activePage: 1 }, { activePage: 5 }, false),
     });
-    expect(component.viewPort.scrollToIndex).toHaveBeenCalledWith(5, 'smooth');
+    expect(component.viewport.scrollToIndex).toHaveBeenCalledWith(5, 'smooth');
   });
 
   it('should set initial active page', () => {
-    spyOn(component.viewPort, 'scrollToIndex');
+    spyOn(component.viewport, 'scrollToIndex');
     component.state = { activePage: 3, behavior: 'auto' };
     component.ngOnChanges({
       state: new SimpleChange( null, { activePage: 3, behavior: 'auto' }, false)
     });
-    expect(component.viewPort.scrollToIndex).toHaveBeenCalledWith(3, 'auto');
+    expect(component.viewport.scrollToIndex).toHaveBeenCalledWith(3, 'auto');
   });
 });

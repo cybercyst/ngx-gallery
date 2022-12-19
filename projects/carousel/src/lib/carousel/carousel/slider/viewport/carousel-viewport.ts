@@ -10,7 +10,7 @@ import {
 import { getRtlScrollAxisType, RtlScrollAxisType } from '@angular/cdk/platform';
 import { Directionality } from '@angular/cdk/bidi';
 import { HorizontalSliderAdapter, SliderAdapter } from '../slider.adapter';
-import { ItemComponent } from '../item/item.component';
+import { CarouselPageTemplate } from '../carousel-page-template/carousel-page-template';
 import { BezierEasingOptions, SmoothScrollManager, SmoothScrollToOptions } from '../../../smooth-scroll';
 
 @Component({
@@ -54,7 +54,7 @@ export class CarouselViewport implements AfterViewChecked {
 
   @Input() adapter: SliderAdapter = new HorizontalSliderAdapter(this.el);
 
-  @ContentChildren(ItemComponent) items = new QueryList<ItemComponent>();
+  @ContentChildren(CarouselPageTemplate) items = new QueryList<CarouselPageTemplate>();
 
   constructor(private elementRef: ElementRef, private dir: Directionality, private smoothScroll: SmoothScrollManager) {
   }

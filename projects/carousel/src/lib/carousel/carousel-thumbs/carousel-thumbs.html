@@ -1,5 +1,3 @@
-<ng-content select="carousel-dots, carousel-thumbs, carousel-player, carousel-counter, carousel-layer"></ng-content>
-
 <div *ngIf="carouselRef.state$ | async as state" class="slider-container">
   <ng-container *ngIf="state.pages.length; else empty">
     <ng-content select="carousel-nav"></ng-content>
@@ -22,6 +20,6 @@
   </ng-container>
 
   <ng-template #empty>
-    <div class="carousel-empty">Carousel is empty!</div>
+    <div class="carousel-empty">No input!</div>
   </ng-template>
 </div>

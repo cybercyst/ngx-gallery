@@ -17,10 +17,10 @@ import { CarouselPage } from 'ng-gallery/next';
       <ng-container [ngTemplateOutlet]="item.template"></ng-container>
     </div>
   `,
-  styleUrls: ['./item.component.scss'],
+  styleUrls: ['./carousel-page-template.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ItemComponent {
+export class CarouselPageTemplate {
 
   @Input() sliderId: number;
   @Input() page: CarouselPage;

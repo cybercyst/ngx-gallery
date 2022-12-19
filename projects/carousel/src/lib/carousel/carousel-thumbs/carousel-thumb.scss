@@ -1,23 +1,6 @@
 :host {
-  display: block;
-  position: relative;
-  grid-area: attr(position);
-
-  //width: var(--page-size);
-  //height: var(--page-cross-size);
-
   ::ng-deep {
     .carousel-page-highlight-active {
-      //position: relative;
-      //border: 2px solid coral;
-      //padding: 2px;
-      //background-color: coral;
-      //z-index: -1;
-    }
-
-    .carousel-item {
-      position: relative;
-      z-index: 11;
     }
 
     .carousel-item-active {
@@ -31,10 +14,6 @@
         border: var(--carousel-thumb-active-border, 2px solid coral);
         z-index: 9999;
       }
-
-      // border: 2px solid coral;
-      // padding: 2px;
-      // background-color: coral;
     }
   }
 }

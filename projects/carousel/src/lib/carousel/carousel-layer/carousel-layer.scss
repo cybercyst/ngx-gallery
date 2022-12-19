@@ -1,33 +1,24 @@
 :host {
   &[compact="true"] {
-    carousel {
-      position: absolute;
-    }
+    position: absolute;
 
     &[position="top"] {
-      carousel {
-        top: 0;
-      }
+      top: 0;
     }
 
     &[position="bottom"] {
-      carousel {
-        bottom: 0;
-      }
+      bottom: 0;
     }
 
     &[position="left"] {
-      carousel {
-        left: 0;
-      }
+      left: 0;
     }
 
     &[position="right"] {
-      carousel {
-        right: 0;
-      }
+      right: 0;
     }
   }
+
   //--carousel-layer-color: var(--carousel-color, #fff);
   //position: absolute;
   //height: 100%;

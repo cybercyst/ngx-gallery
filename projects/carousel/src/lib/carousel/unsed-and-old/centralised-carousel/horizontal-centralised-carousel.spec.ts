@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { CarouselModule } from '../carousel.module';
+import { CarouselModule } from '../../carousel.module';
 import { HorizontalCentralisedCarousel } from './horizontal-centralised-carousel';
-import { CAROUSEL_ORIENTATION } from '../carousel.model';
+import { CAROUSEL_ORIENTATION } from '../../carousel.model';
 
 @Component({
   template: `
@@ -50,7 +50,7 @@ describe('[Horizontal] CentralisedCarousel', () => {
   it('should create with horizontal properties', () => {
     expect(component).toBeTruthy();
     expect(component.orientation).toBe(CAROUSEL_ORIENTATION.Horizontal);
-    expect(component.itemSize).toBe(60);
+    expect(component.itemInlineSize).toBe(60);
     expect(debugElement.styles.width).toBe('100%');
     expect(debugElement.styles.height).toBe('40px');
   });

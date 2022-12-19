@@ -56,10 +56,9 @@
 <mat-slide-toggle [(ngModel)]="gestures">Gestures</mat-slide-toggle>
 
 <div class="gallery-container">
-  <carousel [itemSize]="itemSize"
+  <carousel [itemInlineSize]="itemSize"
             [mode]="mode"
             [panSensitivity]="panSensitivity"
-            [cacheSize]="cacheSize"
             [orientation]="orientation"
             [selectedBehaviour]="selectedBehavior"
             [perPage]="perPage"

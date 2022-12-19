@@ -34,12 +34,12 @@ export class CarouselCounter extends CarouselLayer implements AfterViewChecked {
 
   @HostBinding('attr.style')
   get valueAsStyle(): any {
-    return this.sanitizer.bypassSecurityTrustStyle(`--carousel-player-space: ${ this.carouselThumbs?.itemCrossSize }px`);
+    return this.sanitizer.bypassSecurityTrustStyle(`--carousel-player-space: ${ this.carouselThumbs?.itemBlockSize }px`);
   }
 
   ngAfterViewChecked(): void {
     if (this.carouselThumbs) {
-      this.el.nativeElement.setAttribute('style', `--carousel-player-space: ${ this.carouselThumbs?.itemCrossSize }px`);
+      this.el.nativeElement.setAttribute('style', `--carousel-player-space: ${ this.carouselThumbs?.itemBlockSize }px`);
     }
   }
 }

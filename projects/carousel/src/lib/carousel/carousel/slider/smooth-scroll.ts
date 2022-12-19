@@ -1,6 +1,9 @@
 import { animationFrameScheduler } from 'rxjs';
 
 export interface SmoothScrollToOptions {
+  left?: number;
+  top?: number;
+  behavior?: ScrollBehavior;
   duration?: number;
   easeFunc?: SmoothScrollEaseFunc;
 }
@@ -22,7 +25,7 @@ export function smoothScroll(options: SmoothScrollOptions): Promise<void> {
     easeFunc: easeInOutQuad,
     duration: 800
   };
-  options = {...defaultOptions, ...options};
+  options = { ...defaultOptions, ...options };
 
   return new Promise(resolve => {
     let currentTime = 0;

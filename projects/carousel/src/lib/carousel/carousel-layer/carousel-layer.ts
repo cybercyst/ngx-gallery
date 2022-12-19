@@ -1,7 +1,8 @@
 import { Directive, Input, OnChanges, Optional, SimpleChanges } from '@angular/core';
-import { Carousel } from '../carousel/carousel';
+import { CarouselCore } from '../carousel/carousel-core';
 
 @Directive({
+  standalone: true,
   host: {
     '[class.carousel-layer]': 'true',
     '[attr.compact]': 'compact',
@@ -17,18 +18,17 @@ export class CarouselLayer implements OnChanges {
    */
   @Input() position: 'left' | 'right' | 'top' | 'bottom' = 'top';
 
-
   /**
    * Should overlay the carousel
    */
   @Input() compact: boolean = false;
 
-  constructor(@Optional() public host: Carousel) {
+  constructor(@Optional() private carousel: CarouselCore) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.position && !changes.position.firstChange && changes.position.currentValue !== changes.position.previousValue) {
-      this.host?.updateLayout();
+      this.carousel.updateLayout();
     }
   }
 }

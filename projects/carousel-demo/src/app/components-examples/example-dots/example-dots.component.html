@@ -22,12 +22,14 @@
 
 <div class="gallery-container">
   <carousel style="height: 300px">
-    <carousel-dots [itemSize]="size"
-                   [itemCrossSize]="size"
-                   [clickBehavior]="clickBehavior"
-                   [position]="position"
-                   [centralised]="centralised"
-                   [compact]="compact"></carousel-dots>
+    <carousel-thumbs [itemInlineSize]="size"
+                     [itemBlockSize]="size"
+                     [clickBehavior]="clickBehavior"
+                     [position]="position"
+                     [centralized]="centralised"
+                     [compact]="compact">
+    </carousel-thumbs>
+
     <ng-container *ngFor="let item of items; index as i">
       <ng-template carouselItem>
         <div class="test-item" [style.background]="item.color">

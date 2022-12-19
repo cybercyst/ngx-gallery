@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChangeDetectionStrategy, Component, DebugElement } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { CarouselModule } from '../carousel.module';
+import { CarouselModule } from '../../carousel.module';
 import { VerticalCentralisedCarousel } from './vertical-centralised-carousel';
-import { CAROUSEL_ORIENTATION } from '../carousel.model';
+import { CAROUSEL_ORIENTATION } from '../../carousel.model';
 
 @Component({
   template: `
@@ -51,7 +51,7 @@ describe('[Vertical] CentralisedCarousel', () => {
 
   it('should create with vertical properties', () => {
     expect(component.orientation).toBe(CAROUSEL_ORIENTATION.Vertical);
-    expect(component.itemSize).toBe(40);
+    expect(component.itemInlineSize).toBe(40);
     expect(debugElement.styles.width).toBe('60px');
     expect(debugElement.styles.height).toBe('100%');
   });

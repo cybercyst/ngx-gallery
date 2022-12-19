@@ -1,8 +1,8 @@
 <mat-form-field appearance="fill">
   <mat-label>Mode</mat-label>
   <mat-select [(value)]="mode">
-    <mat-option value="default">default</mat-option>
-    <mat-option value="center-method">center-method</mat-option>
+    <mat-option value="strict">strict</mat-option>
+    <mat-option value="free">free</mat-option>
   </mat-select>
 </mat-form-field>
 
@@ -32,8 +32,8 @@
 
   <carousel style="height: 300px" [selectedItem]="5">
     <carousel-thumbs [compact]="compact"
-                     [itemSize]="120"
-                     [itemCrossSize]="50"
+                     [itemInlineSize]="120"
+                     [itemBlockSize]="50"
                      [clickBehavior]="clickBehavior"
                      [position]="position"
                      [centralized]="centralised"

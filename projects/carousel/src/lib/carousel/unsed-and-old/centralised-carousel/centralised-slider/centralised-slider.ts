@@ -9,7 +9,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { CAROUSEL_ORIENTATION, CarouselOrientation, CarouselState } from '../../carousel.model';
+import { CAROUSEL_ORIENTATION, CarouselOrientation, CarouselState } from '../../../carousel.model';
 
 @Component({
   selector: 'centralised-slider',
