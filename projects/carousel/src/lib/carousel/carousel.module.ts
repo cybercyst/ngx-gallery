@@ -17,9 +17,9 @@ import { CarouselThumbs } from './carousel-thumbs/carousel-thumbs';
 import { CentralisedSlider } from './unsed-and-old/centralised-carousel/centralised-slider/centralised-slider';
 import { CarouselPlayer } from './carousel-player/carousel-player';
 import { CarouselCounter } from './carousel-counter/carousel-counter';
-import { CarouselViewport } from './carousel/slider/viewport/carousel-viewport';
-import { NewSlider } from './carousel/slider/slider';
-import { CarouselPageTemplate } from './carousel/slider/carousel-page-template/carousel-page-template';
+import { CarouselViewport } from './slider/viewport/carousel-viewport';
+import { Slider } from './slider/slider';
+import { CarouselPageTemplate } from './slider/carousel-page-template/carousel-page-template';
 
 @NgModule({
   imports: [
@@ -40,7 +40,7 @@ import { CarouselPageTemplate } from './carousel/slider/carousel-page-template/c
     CarouselItemDirective,
     CarouselThumbs,
     CentralisedSlider,
-    NewSlider,
+    Slider,
     CarouselPlayer,
     CarouselCounter,
     CarouselViewport,

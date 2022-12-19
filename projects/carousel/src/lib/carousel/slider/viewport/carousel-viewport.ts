@@ -11,7 +11,7 @@ import { getRtlScrollAxisType, RtlScrollAxisType } from '@angular/cdk/platform';
 import { Directionality } from '@angular/cdk/bidi';
 import { HorizontalSliderAdapter, SliderAdapter } from '../slider.adapter';
 import { CarouselPageTemplate } from '../carousel-page-template/carousel-page-template';
-import { BezierEasingOptions, SmoothScrollManager, SmoothScrollToOptions } from '../../../smooth-scroll';
+import { BezierEasingOptions, SmoothScrollManager, SmoothScrollToOptions } from '../../smooth-scroll';
 
 @Component({
   host: {

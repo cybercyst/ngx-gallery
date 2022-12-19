@@ -1,4 +1,4 @@
-import { BezierEasingOptions, SmoothScrollOptions, SmoothScrollToOptions } from '../../smooth-scroll';
+import { BezierEasingOptions, SmoothScrollOptions, SmoothScrollToOptions } from '../smooth-scroll';
 import { coerceBooleanProperty, coerceCssPixelValue, coerceNumberProperty } from '@angular/cdk/coercion';
 
 declare let Hammer: any;

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { SimpleChange } from '@angular/core';
-import { CarouselModule } from '../../carousel.module';
+import { CarouselModule } from '../carousel.module';
 import { Slider } from './slider';
-import { CAROUSEL_ORIENTATION } from '../../carousel.model';
+import { CAROUSEL_ORIENTATION } from '../carousel.model';
 import { VerticalSliderAdapter } from './slider.adapter';
 
 describe('Slider', () => {

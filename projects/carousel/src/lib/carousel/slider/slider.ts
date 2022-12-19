@@ -27,7 +27,7 @@ import {
   CarouselActionEvent,
   CarouselMode,
   CarouselState
-} from '../../carousel.model';
+} from '../carousel.model';
 import { HorizontalSliderAdapter, SliderAdapter, VerticalSliderAdapter } from './slider.adapter';
 import { CarouselViewport } from './viewport/carousel-viewport';
 import { CarouselPageTemplate } from './carousel-page-template/carousel-page-template';
@@ -43,7 +43,7 @@ let sliderId: number = 0;
   styleUrls: ['./slider.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NewSlider implements AfterViewInit, OnInit, OnChanges, OnDestroy {
+export class Slider implements AfterViewInit, OnInit, OnChanges, OnDestroy {
 
   sliderId: number = sliderId++;
 
