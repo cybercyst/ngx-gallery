@@ -12,7 +12,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, Templa
       </ng-container>
       <ng-template #defaultTemplate>
         <button class="carousel-nav-button"
-                (tapClick)="select.emit()"
+                (click)="select.emit()"
                 [disabled]="disabled">
           <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
         </button>
