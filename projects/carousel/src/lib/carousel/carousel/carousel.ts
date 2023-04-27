@@ -8,7 +8,7 @@ import {
   QueryList,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { startWith, takeUntil, tap } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 import { CAROUSEL_DEFAULT_OPTIONS, CarouselConfig, CarouselOrientation } from '../carousel.model';
 import { CarouselCore } from './carousel-core';
 import { CarouselLayer } from '../carousel-layer/carousel-layer';
