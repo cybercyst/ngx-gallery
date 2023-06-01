@@ -24,7 +24,7 @@ export class ComponentsPageComponent implements OnInit, OnDestroy {
     );
 
     this.routerEventsSub$ = this.router.events.pipe(
-      filter((routerEvent: RouterEvent) => routerEvent instanceof NavigationEnd),
+      filter((routerEvent) => routerEvent instanceof NavigationEnd),
       tap(() => this.sideNavOpened = false)
     ).subscribe();
   }
