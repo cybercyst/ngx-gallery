@@ -3,7 +3,7 @@ import { CarouselItem } from '../carousel/carousel.model';
 
 @Directive({
   exportAs: 'carouselThumb',
-  selector: 'ng-template[carouselItemThumb], ng-template[carousel-item-thumb]'
+  selector: '[carouselItemThumb]'
 })
 export class CarouselItemThumbDirective implements CarouselItem {
 
@@ -15,7 +15,7 @@ export class CarouselItemThumbDirective implements CarouselItem {
 
 @Directive({
   exportAs: 'carouselItem',
-  selector: 'ng-template[carouselItem], ng-template[carouse-iItem]'
+  selector: '[carouselItem]'
 })
 export class CarouselItemDirective implements CarouselItem {
 

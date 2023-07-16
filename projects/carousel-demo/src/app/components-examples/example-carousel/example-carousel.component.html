@@ -66,14 +66,12 @@
             [selectedItem]="selectedItem"
             [gestures]="gestures">
     <ng-container *ngFor="let item of items; index as i">
-      <ng-template carouselItem>
-        <div class="test-item"
-             [style.background]="item.color1">
-<!--          [style.background]="'linear-gradient(to right top, ' + item.color1 + ',' + item.color2 + ')'">-->
-          <h4>{{ i + 1 }}</h4>
-          <div><sub>{{ item.width }}x{{ item.height }}</sub></div>
-        </div>
-      </ng-template>
+      <div *carouselItem class="test-item"
+           [style.background]="item.color1">
+        <!--          [style.background]="'linear-gradient(to right top, ' + item.color1 + ',' + item.color2 + ')'">-->
+        <h4>{{ i + 1 }}</h4>
+        <div><sub>{{ item.width }}x{{ item.height }}</sub></div>
+      </div>
     </ng-container>
   </carousel>
 </div>

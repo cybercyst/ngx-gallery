@@ -7,15 +7,13 @@
             selectedBehaviour="auto"
             [gestures]="false">
     <ng-container *ngFor="let item of data$ | async; index as i">
-      <ng-template carouselItem>
-        <div class="full test-item" style="z-index: 2">
-          <img panzoomImage
-               [isActive]="carousel.snapshot.activePage === i"
-               (activeItem)="panzoom.setElement($event)"
-               [src]="item.data.fullHDURL"
-               (click)="panzoom.click()">
-        </div>
-      </ng-template>
+      <div *carouselItem class="full test-item" style="z-index: 2">
+        <img panzoomImage
+             [isActive]="carousel.snapshot.activePage === i"
+             (activeItem)="panzoom.setElement($event)"
+             [src]="item.data.fullHDURL"
+             (click)="panzoom.click()">
+      </div>
     </ng-container>
 
     <carousel-layer panzoom

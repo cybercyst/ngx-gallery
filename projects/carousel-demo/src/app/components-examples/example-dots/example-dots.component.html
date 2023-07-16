@@ -31,11 +31,9 @@
     </carousel-thumbs>
 
     <ng-container *ngFor="let item of items; index as i">
-      <ng-template carouselItem>
-        <div class="test-item" [style.background]="item.color">
-          {{ i + 1 }}
-        </div>
-      </ng-template>
+      <div *carouselItem class="test-item" [style.background]="item.color">
+        {{ i + 1 }}
+      </div>
     </ng-container>
     <carousel-nav></carousel-nav>
   </carousel>

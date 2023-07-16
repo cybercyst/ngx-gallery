@@ -55,7 +55,7 @@
 <ng-template lightbox #lightbox1="lightbox" [fullscreen]="false">
   <carousel #carousel="carousel" [selectedItem]="lightbox1.selected">
     <ng-container *ngFor="let item of camel$ | async; index as i">
-      <ng-template carouselItem>
+      <div *carouselItem>
         <gallery-image [src]="item.data.src"></gallery-image>
         <gallery-item-text>
           <h1 [@fade]="carousel.carouselRef.snapshot.activePage === i ? 'in' : 'out'"
@@ -63,10 +63,11 @@
           <h4 [@fade]="carousel.carouselRef.snapshot.activePage === i ? 'in' : 'out'"
               style="font-weight: 300">{{ item.data.text }}</h4>
         </gallery-item-text>
-      </ng-template>
-      <ng-template carouselItemThumb>
-        <gallery-image matRipple style="width: 100%;height: 100%" [src]="item.data.thumb"></gallery-image>
-      </ng-template>
+      </div>
+      <gallery-image *carouselItemThumb
+                     matRipple
+                     style="width: 100%;height: 100%"
+                     [src]="item.data.thumb"></gallery-image>
     </ng-container>
     <carousel-nav></carousel-nav>
     <carousel-thumbs [itemBlockSize]="100" [itemInlineSize]="200" position="top"></carousel-thumbs>

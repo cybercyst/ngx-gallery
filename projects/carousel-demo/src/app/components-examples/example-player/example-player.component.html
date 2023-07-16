@@ -1,16 +1,15 @@
 <carousel style="height: 300px">
   <ng-container *ngFor="let item of items; index as i">
-    <ng-template carouselItem>
-      <div class="test-item"
-           [style.background]="item.color">
-        {{ i + 1 }}
-      </div>
-    </ng-template>
-    <ng-template carouselItemThumb>
-      <div class="test-item test-item-thumb" [style.background]="item.color">
-        {{ i + 1 }}
-      </div>
-    </ng-template>
+    <div *carouselItem
+         class="test-item"
+         [style.background]="item.color">
+      {{ i + 1 }}
+    </div>
+    <div *carouselItemThumb
+         class="test-item test-item-thumb"
+         [style.background]="item.color">
+      {{ i + 1 }}
+    </div>
   </ng-container>
 
   <carousel-player [pauseOn]="pauseOn.value"

@@ -39,38 +39,36 @@
                      [centralized]="centralised"
                      [mode]="mode"></carousel-thumbs>
     <ng-container *ngFor="let item of items; index as i">
-      <ng-template carouselItem>
-        <div class="test-item" [style.background]="item.color">
-          {{ i + 1 }}
-        </div>
-      </ng-template>
-      <ng-template carouselItemThumb>
-        <div class="test-item test-item-thumb" [style.background]="item.color">
-          {{ i + 1 }}
-        </div>
-      </ng-template>
+      <div *carouselItem
+           class="test-item"
+           [style.background]="item.color">
+        {{ i + 1 }}
+      </div>
+      <div *carouselItemThumb class="test-item test-item-thumb" [style.background]="item.color">
+        {{ i + 1 }}
+      </div>
     </ng-container>
     <carousel-nav></carousel-nav>
   </carousel>
 
-<!--  <h2>Compact mode, centralised</h2>-->
+  <!--  <h2>Compact mode, centralised</h2>-->
 
-<!--  <carousel style="height: 300px" [selectedItem]="8">-->
-<!--    <ng-container *ngFor="let item of items; index as i">-->
-<!--      <ng-template carouselItem>-->
-<!--        <div class="test-item" [style.background]="item.color">-->
-<!--          {{ i + 1 }}-->
-<!--        </div>-->
-<!--      </ng-template>-->
-<!--      <ng-template carouselItemThumb>-->
-<!--        <div class="test-item test-item-thumb" [style.background]="item.color">-->
-<!--          {{ i + 1 }}-->
-<!--        </div>-->
-<!--      </ng-template>-->
-<!--    </ng-container>-->
-<!--    <carousel-thumbs *ngIf="toggle" [centralised]="false" [itemCrossSize]="50" mode="center-method"></carousel-thumbs>-->
-<!--    <carousel-nav></carousel-nav>-->
-<!--  </carousel>-->
+  <!--  <carousel style="height: 300px" [selectedItem]="8">-->
+  <!--    <ng-container *ngFor="let item of items; index as i">-->
+  <!--      <ng-template carouselItem>-->
+  <!--        <div class="test-item" [style.background]="item.color">-->
+  <!--          {{ i + 1 }}-->
+  <!--        </div>-->
+  <!--      </ng-template>-->
+  <!--      <ng-template carouselItemThumb>-->
+  <!--        <div class="test-item test-item-thumb" [style.background]="item.color">-->
+  <!--          {{ i + 1 }}-->
+  <!--        </div>-->
+  <!--      </ng-template>-->
+  <!--    </ng-container>-->
+  <!--    <carousel-thumbs *ngIf="toggle" [centralised]="false" [itemCrossSize]="50" mode="center-method"></carousel-thumbs>-->
+  <!--    <carousel-nav></carousel-nav>-->
+  <!--  </carousel>-->
 </div>
 
 <!--<h2>Compact, centralised</h2>-->
